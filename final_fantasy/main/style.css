@@ -11,3 +11,8 @@ main {
 .cell {
     background-color: black;
 }
+
+.cell-img {
+    width: 100%;
+    height: 100%;
+}
