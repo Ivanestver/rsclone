@@ -1,0 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: grid;
+    grid-template: repeat(4, 25vh) / repeat(4, 25vw);
+}
+
+.cell {
+    background-color: black;
+}
