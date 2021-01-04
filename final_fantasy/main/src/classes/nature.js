@@ -1,4 +1,4 @@
-const { Object } = require("../object");
+const { Object } = require("./object");
 
 export class Mountain extends Object {
     constructor(name, src) {
@@ -15,5 +15,11 @@ export class Hill extends Object {
 export class Tree extends Object {
     constructor(name, src) {
         super(name, false, `Trees/${src}`);
+    }
+}
+
+export class Grass extends Object {
+    constructor(name, src) {
+        super(name, true, `Grass/${src}`);
     }
 }

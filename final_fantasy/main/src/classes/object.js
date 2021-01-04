@@ -1,8 +1,8 @@
-class Object {
+export class Object {
     constructor(name, isWalkable, src) {
         this.name = name;
         this.isWalkable = isWalkable;
-        this.src = `../../assets/sprites/${src}`;
+        this.src = `./assets/sprites/${src}`;
     }
 
     get Name() {
@@ -23,6 +23,6 @@ class Object {
         return this.src;
     }
     set Src(value) {
-        this.name = src;
+        this.src = value;
     }
 }

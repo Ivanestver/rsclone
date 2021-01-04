@@ -1,38 +1,38 @@
-import { Object } from "../object";
+import { Object } from "./object";
 
 export class Character extends Object {
     constructor(name, isWalkable, src, hp, power, isEnemy) {
         super(name, isWalkable, `Characters/${src}`);
-        this.#hp = hp;
-        this.#power = power;
-        this.#isEnemy = isEnemy;
+        this.hp = hp;
+        this.power = power;
+        this.isEnemy = isEnemy;
     }
 
     get Hp() {
-        return this.#hp;
+        return this.hp;
     }
     set Hp(value) {
-        this.#hp = value;
+        this.hp = value;
     }
 
     get Power() {
-        return this.#power;
+        return this.power;
     }
     set Power(value) {
-        this.#power = value;
+        this.power = value;
     }
 
     get IsEnemy() {
-        return this.#isEnemy;
+        return this.isEnemy;
     }
     set IsEnemy(value) {
-        this.#isEnemy = value;
+        this.isEnemy = value;
     }
 }
 
 export class Hero extends Character {
     constructor(name, hp, power) {
-        super(name, true, 'Hero.jpg', hp, power, false);
+        super(name, true, 'Hero.png', hp, power, false);
     }
 }
 
