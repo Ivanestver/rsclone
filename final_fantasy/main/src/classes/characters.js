@@ -59,3 +59,9 @@ export class Villager extends Character {
         obj.IsEnemy = this.IsEnemy;
     }
 }
+
+export class DarkKnight extends Character {
+    constructor(hp) {
+        super('Dark Knight', false, 'DarkKnight.png', hp, 10, true);
+    }
+}

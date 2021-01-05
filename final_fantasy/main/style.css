@@ -1,3 +1,7 @@
+:root {
+    --det: 6;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +9,7 @@
 
 main {
     display: grid;
-    grid-template: repeat(4, 25vh) / repeat(4, 25vw);
+    grid-template: repeat(var(--det), calc(100vh / var(--det))) / repeat(var(--det), calc(100vw / var(--det)));
 }
 
 .cell {
