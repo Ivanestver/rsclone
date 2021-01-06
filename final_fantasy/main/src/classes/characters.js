@@ -41,7 +41,9 @@ export class Hero extends Character {
 
         this.inventory = {
             weapon: new Sword('Simple Sword', 'SimpleSword.png', 5),
-            armory: new Armory('Leather armory', 'LeatherArmory.png', 5)
+            armory: new Armory('Leather armory', 'LeatherArmory.png', 5),
+            food: [],
+            drinks: []
         }
 
         this.magic = [cure, lightning, fire, freezing, powerman, getMP];
