@@ -4,6 +4,7 @@ import { variables } from "./variables";
 export function move(event) {
     switch (event.key) {
         case 'w':
+        case 'W':
             if (variables.Map[variables.X - 1][variables.Y] !== undefined && variables.Map[variables.X - 1][variables.Y].IsWalkable) {
                 replace(variables.X - 1, variables.Y);
             }

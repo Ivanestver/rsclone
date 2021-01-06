@@ -19,12 +19,12 @@ class Variables {
             this.Arena.push([]);
             for (let j = 0; j < this.mapSize; j++) {
                 if (i === 2 && j === 4) {
-                    this.Arena[i].push(this.Hero);
+                    this.Arena[i].push(new DarkKnight(100));
                     continue;
                 }
 
                 if (i === 2 && j === 1) {
-                    this.Arena[i].push(new DarkKnight(100));
+                    this.Arena[i].push(this.Hero);
                     continue;
                 }
 
