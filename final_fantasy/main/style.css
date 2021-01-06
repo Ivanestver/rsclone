@@ -79,3 +79,14 @@ main {
 .select {
     font-weight: 600;
 }
+
+.magic {
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    width: 40vw;
+    height: 25vh;
+}

@@ -1,4 +1,7 @@
+import { Armory } from "./armories";
+import { cure, fire, freezing, lightning, powerman, getMP } from "./magic";
 import { Object } from "./object";
+import { Sword } from "./weapons";
 
 export class Character extends Object {
     constructor(name, isWalkable, src, hp, power, isEnemy) {
@@ -31,8 +34,29 @@ export class Character extends Object {
 }
 
 export class Hero extends Character {
-    constructor(name, hp, power) {
+    constructor(name, hp, power, mana) {
         super(name, true, 'Hero.png', hp, power, false);
+
+        this.inventory = {
+            weapon: new Sword('Simple Sword', 'SimpleSword.png', 5),
+            armory: new Armory('Leather armory', 'LeatherArmory.png', 5)
+        }
+
+        this.magic = [cure, lightning, fire, freezing, powerman, getMP];
+
+        this.mana = mana;
+    }
+
+    get Hp() {
+        return this.hp + this.inventory.armory.defence;
+    }
+
+    set Hp(value) {
+        this.hp = value;
+    }
+
+    get Power() {
+        return this.inventory.weapon.power;
     }
 
     copy(obj) {

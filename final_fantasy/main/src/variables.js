@@ -7,11 +7,12 @@ class Variables {
         this.Arena = [];
         this.mapSize = 6;
         this.imgWidth = 320;
-        this.Hero = new Hero('Hero', 100, 10);
+        this.Hero = new Hero('Hero', 100, 10, 100);
 
         // Coordinates of a hero
         this.X = 4;
         this.Y = 3;
+        this.enemyCoordinates = { x: 2, y: 4 };
 
         this.currentPlace = new Grass('green grass', 'Grass.png'); // where a hero is staying. It defines what type of ground is under him.
 
