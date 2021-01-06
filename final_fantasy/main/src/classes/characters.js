@@ -4,12 +4,13 @@ import { Object } from "./object";
 import { Sword } from "./weapons";
 
 export class Character extends Object {
-    constructor(name, isWalkable, src, hp, power, isEnemy, money) {
+    constructor(name, isWalkable, src, hp, power, isEnemy, money, xp) {
         super(name, isWalkable, `Characters/${src}`);
         this.hp = hp;
         this.power = power;
         this.isEnemy = isEnemy;
         this.money = money;
+        this.xp = xp;
     }
 
     get Hp() {
@@ -36,7 +37,7 @@ export class Character extends Object {
 
 export class Hero extends Character {
     constructor(name, hp, power, mana) {
-        super(name, true, 'Hero.png', hp, power, false);
+        super(name, true, 'Hero.png', hp, power, false, 0, 0);
 
         this.inventory = {
             weapon: new Sword('Simple Sword', 'SimpleSword.png', 5),
@@ -86,7 +87,7 @@ export class Villager extends Character {
 }
 
 export class DarkKnight extends Character {
-    constructor(hp, money) {
-        super('Dark Knight', false, 'DarkKnight.png', hp, 10, true, money);
+    constructor(hp, money, xp) {
+        super('Dark Knight', false, 'DarkKnight.png', hp, 10, true, money, xp);
     }
 }

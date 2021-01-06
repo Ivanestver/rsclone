@@ -22,13 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
     variables.Map[3].push(new Mountain('Mountain', 'Mountain.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png'));
     variables.Map[4].push(new Mountain('Mountain', 'Mountain.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), variables.Hero, new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png'));
 
-
-    //document.addEventListener('keydown', input);
-    document.onkeydown = input;
-
-    paintMap();
+    initMap();
 });
 
+export function initMap() {
+    document.onkeydown = input;
+    paintMap();
+}
 
 export function paintMap(Map = variables.Map) {
     main.innerHTML = "";
@@ -50,7 +50,7 @@ export function paintMap(Map = variables.Map) {
     }
 }
 
-function input(event) {
+export function input(event) {
     if (event.key === 'c') {
         createFight(event);
     }

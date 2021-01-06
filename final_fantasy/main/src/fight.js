@@ -1,6 +1,7 @@
-import { paintMap } from "./main";
+import { initMap, paintMap } from "./main";
 import { variables } from "./variables";
 import { Magic, SkillMagic } from "./classes/magic";
+import { DarkKnight } from "./classes/characters";
 
 var main = document.getElementsByClassName('main')[0];
 var heroHealth;
@@ -12,6 +13,7 @@ var textTurn;
 
 export function createFight(event) {
     main.innerHTML = "";
+    variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y] = new DarkKnight(100, 10, 10);
     paintMap(variables.Arena);
     createHUD();
     assignActions();
@@ -155,6 +157,7 @@ function Enter(option) {
             case 'Help':
                 break;
             case 'Skip turn':
+                textTurn.textContent = "Enemy's turn!";
                 setTimeout(() => {
                     canBeContinued = true;
                     EnemyAttack();
@@ -180,6 +183,10 @@ function Enter(option) {
 function Attack(power) {
     variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].Hp -= power;
     enemyHealth.textContent = 'Enemy: ' + variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].Hp;
+    if (variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].Hp === 0) {
+        win();
+        return;
+    }
     textTurn.textContent = "Enemy's turn!";
     canBeContinued = false;
     setTimeout(() => {
@@ -224,4 +231,22 @@ function defineMagic(magic) {
         heroHealth.textContent = 'Your HP: ' + variables.Hero.Hp;
         heroMP.textContent = 'Your MP: ' + variables.Hero.mana;
     }
+}
+
+function win() {
+    textTurn.textContent = 'You won!';
+
+    setTimeout(() => {
+        textTurn.textContent = `You got ${variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].money} coins`;
+        variables.Hero.money += variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].money;
+    }, 2000);
+
+    setTimeout(() => {
+        textTurn.textContent = `You got ${variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].xp} xp`;
+        variables.Hero.xp += variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].xp;
+    }, 4000);
+
+    setTimeout(() => {
+        initMap();
+    }, 6000);
 }

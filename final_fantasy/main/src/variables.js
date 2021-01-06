@@ -20,7 +20,7 @@ class Variables {
             this.Arena.push([]);
             for (let j = 0; j < this.mapSize; j++) {
                 if (i === 2 && j === 4) {
-                    this.Arena[i].push(new DarkKnight(100, 10));
+                    this.Arena[i].push(new DarkKnight(100, 10, 10));
                     continue;
                 }
 
