@@ -1,8 +1,10 @@
 import { paintMap } from "./main";
 import { variables } from "./variables";
+import { Magic, SkillMagic } from "./classes/magic";
 
 var main = document.getElementsByClassName('main')[0];
 var heroHealth;
+var heroMP;
 var enemyHealth;
 var canBeContinued = true;  // for delaying after attacking
 var isPlayerAttacking = true;
@@ -66,15 +68,25 @@ function createHUD() {
     panel.classList.add('healthWrapper');
     panel.classList.add('appearance');
 
+    let hero = document.createElement('div');
+    hero.classList.add('hero');
+
     heroHealth = document.createElement('span');
     heroHealth.classList.add('text');
-    heroHealth.textContent = `You: ${variables.Map[variables.X][variables.Y].Hp}`;
+    heroHealth.textContent = `Your HP: ${variables.Hero.Hp}`;
+
+    heroMP = document.createElement('span');
+    heroMP.classList.add('text');
+    heroMP.textContent = `Your MP: ${variables.Hero.mana}`;
+
+    hero.appendChild(heroHealth);
+    hero.appendChild(heroMP);
 
     enemyHealth = document.createElement('span');
     enemyHealth.classList.add('text');
     enemyHealth.textContent = `Enemy: ${variables.Arena[2][4].Hp}`;
 
-    panel.appendChild(heroHealth);
+    panel.appendChild(hero);
     panel.appendChild(enemyHealth);
 
     main.appendChild(panel);
@@ -154,8 +166,12 @@ function Enter(option) {
         variables.Hero.magic.forEach(magic => {
             if (magic.name === option) {
                 document.getElementById('magic').remove();
-                Attack(magic.power);
+                defineMagic(magic);
                 document.onkeydown = keyPressHandler;
+                setTimeout(() => {
+                    canBeContinued = true;
+                    EnemyAttack();
+                }, 1500);
             }
         });
     }
@@ -174,7 +190,7 @@ function Attack(power) {
 
 function EnemyAttack() {
     variables.Hero.Hp -= variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].Power;
-    heroHealth.textContent = 'You: ' + variables.Hero.Hp;
+    heroHealth.textContent = 'Your HP: ' + variables.Hero.Hp;
     textTurn.textContent = 'Your turn!';
 }
 
@@ -196,4 +212,16 @@ function ApplyMagic() {
     main.appendChild(magicDiv);
 
     document.onkeydown = (event) => { keyPressHandler(event, 1); };
+}
+
+function defineMagic(magic) {
+    if (magic.__proto__.constructor.name === 'Magic') {
+        magic.apply(Attack, variables.Hero);
+        heroMP.textContent = 'Your MP: ' + variables.Hero.mana;
+    }
+    else if (magic.__proto__.constructor.name === 'SkillMagic') {
+        magic.apply(variables.Hero);
+        heroHealth.textContent = 'Your HP: ' + variables.Hero.Hp;
+        heroMP.textContent = 'Your MP: ' + variables.Hero.mana;
+    }
 }
