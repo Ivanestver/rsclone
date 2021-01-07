@@ -1,6 +1,7 @@
 import { Armory } from "./armories";
 import { cure, fire, freezing, lightning, powerman, getMP } from "./magic";
 import { Object } from "./object";
+import { apple, bread, cola, meat, tea, water } from "./supplies";
 import { Sword } from "./weapons";
 
 export class Character extends Object {
@@ -42,8 +43,8 @@ export class Hero extends Character {
         this.inventory = {
             weapon: new Sword('Simple Sword', 'SimpleSword.png', 5),
             armory: new Armory('Leather armory', 'LeatherArmory.png', 5),
-            food: [],
-            drinks: []
+            food: [apple, bread, meat],
+            drinks: [water, tea, cola]
         }
 
         this.magic = [cure, lightning, fire, freezing, powerman, getMP];

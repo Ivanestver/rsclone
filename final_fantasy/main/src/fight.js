@@ -7,7 +7,7 @@ var main = document.getElementsByClassName('main')[0];
 var heroHealth;
 var heroMP;
 var enemyHealth;
-var canBeContinued = true;  // for delaying after attacking
+var canBeContinued = true;  // for delaying after player's attacking
 var isPlayerAttacking = true;
 var textTurn;
 
@@ -104,8 +104,14 @@ function keyPressHandler(event, numberElement = 0) {
     }
 
     if (event.key === 'Escape') {
-        if (document.getElementsByClassName('select').length === 2) {
+        if (document.getElementById('magic') !== null) {
             document.getElementById('magic').remove();
+            document.onkeydown = keyPressHandler;
+            return;
+        }
+
+        if (document.getElementById('help') !== null) {
+            document.getElementById('help').remove();
             document.onkeydown = keyPressHandler;
             return;
         }
@@ -127,12 +133,14 @@ function keyPressHandler(event, numberElement = 0) {
             switch (event.key) {
                 case 'w':
                 case 'W':
+                case 'ArrowUp':
                     if (i != 0) {
                         node = i - 1;
                     }
                     break;
                 case 's':
                 case 'S':
+                case 'ArrowDown':
                     if (i != parent.children.length - 1) {
                         node = i + 1;
                     }
@@ -155,6 +163,7 @@ function Enter(option) {
                 ApplyMagic();
                 break;
             case 'Help':
+                ApplyHelp();
                 break;
             case 'Skip turn':
                 textTurn.textContent = "Enemy's turn!";
@@ -249,4 +258,33 @@ function win() {
     setTimeout(() => {
         initMap();
     }, 6000);
+}
+
+function ApplyHelp() {
+    let help = document.createElement('div');
+    help.classList.add('help', 'appearance');
+    help.id = 'help';
+    for (let i = 0; i < variables.Hero.inventory.food.length; i++) {
+        let food = document.createElement('span');
+        food.style.fontSize = '1.5rem';
+        food.style.color = '#fff';
+        food.style.paddingLeft = '15%';
+        food.textContent = variables.Hero.inventory.food[i].name;
+        help.appendChild(food);
+    }
+
+    for (let i = 0; i < variables.Hero.inventory.drinks.length; i++) {
+        let drink = document.createElement('span');
+        drink.style.fontSize = '1.5rem';
+        drink.style.color = '#fff';
+        drink.style.paddingLeft = '15%';
+        drink.textContent = variables.Hero.inventory.drinks[i].name;
+        help.appendChild(drink);
+    }
+
+    help.children[0].classList.add('select');
+
+    main.appendChild(help);
+
+    document.onkeydown = (event) => { keyPressHandler(event, 1); };
 }
