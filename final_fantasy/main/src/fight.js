@@ -199,9 +199,18 @@ function Enter(option) {
             });
         }
         else {
-            variables.Hero.inventory.food.forEach(food => {
-                if (food.name === option) {
-                    food.apply(variables.Hero);
+            let keys = Object.keys(variables.Hero.inventory.food);
+
+            for (let i = 0; i < keys.length; i++) {
+                if (foods[keys[i]].name === option) {
+                    if (variables.Hero.inventory.food[keys[i]] === 0) {
+                        return;
+                    }
+
+                    foods[keys[i]].apply(variables.Hero);
+
+                    variables.Hero.inventory.food[keys[i]] -= 1;
+
                     document.getElementById('help').remove();
                     document.onkeydown = keyPressHandler;
                     setTimeout(() => {
@@ -212,10 +221,20 @@ function Enter(option) {
                     heroMP.textContent = 'Your MP: ' + variables.Hero.mana;
                     return;
                 }
-            });
-            variables.Hero.inventory.drinks.forEach(drink => {
-                if (drink.name === option) {
-                    drink.apply(variables.Hero);
+            }
+
+            keys = Object.keys(variables.Hero.inventory.drinks);
+
+            for (let i = 0; i < keys.length; i++) {
+                if (drinks[keys[i]].name === option) {
+                    if (variables.Hero.inventory.drinks[keys[i]] === 0) {
+                        return;
+                    }
+
+                    drinks[keys[i]].apply(variables.Hero);
+
+                    variables.Hero.inventory.drinks[keys[i]] -= 1;
+
                     document.getElementById('help').remove();
                     document.onkeydown = keyPressHandler;
                     setTimeout(() => {
@@ -226,7 +245,7 @@ function Enter(option) {
                     heroMP.textContent = 'Your MP: ' + variables.Hero.mana;
                     return;
                 }
-            });
+            }
         }
     }
 }
