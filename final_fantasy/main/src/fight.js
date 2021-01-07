@@ -1,14 +1,13 @@
 import { initMap, paintMap } from "./main";
 import { variables } from "./variables";
-import { Magic, SkillMagic } from "./classes/magic";
 import { DarkKnight } from "./classes/characters";
+import { foods, drinks } from "./classes/supplies";
 
 var main = document.getElementsByClassName('main')[0];
 var heroHealth;
 var heroMP;
 var enemyHealth;
 var canBeContinued = true;  // for delaying after player's attacking
-var isPlayerAttacking = true;
 var textTurn;
 
 export function createFight(event) {
@@ -16,7 +15,7 @@ export function createFight(event) {
     variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y] = new DarkKnight(100, 10, 10);
     paintMap(variables.Arena);
     createHUD();
-    assignActions();
+    document.onkeydown = keyPressHandler;
 }
 
 function createHUD() {
@@ -94,10 +93,6 @@ function createHUD() {
     main.appendChild(panel);
 }
 
-function assignActions() {
-    document.onkeydown = keyPressHandler;
-}
-
 function keyPressHandler(event, numberElement = 0) {
     if (!canBeContinued) {
         return;
@@ -121,15 +116,24 @@ function keyPressHandler(event, numberElement = 0) {
 
     if (event.key === 'Enter') {
         Enter(current.textContent);
+        return;
     }
 
     let parent = current.parentElement;
+    if (document.getElementById('help') !== null) {
+        parent = parent.parentElement;
+    }
+
     current.classList.remove('select');
+    if (document.getElementById('help') !== null) {
+        current.parentElement.children[1].classList.remove('select');
+    }
 
     let node = 0;
 
     for (let i = 0; i < parent.children.length; i++) {
-        if (parent.children[i].textContent === current.textContent) {
+        let text = document.getElementById('help') === null ? parent.children[i].textContent : parent.children[i].children[0].textContent;
+        if (text === current.textContent) {
             switch (event.key) {
                 case 'w':
                 case 'W':
@@ -148,6 +152,12 @@ function keyPressHandler(event, numberElement = 0) {
             }
             break;
         }
+    }
+
+    if (document.getElementById('help') !== null) {
+        parent.children[node].children[0].classList.add('select');
+        parent.children[node].children[1].classList.add('select');
+        return;
     }
 
     parent.children[node].classList.add('select');
@@ -175,17 +185,49 @@ function Enter(option) {
         }
     }
     else {
-        variables.Hero.magic.forEach(magic => {
-            if (magic.name === option) {
-                document.getElementById('magic').remove();
-                defineMagic(magic);
-                document.onkeydown = keyPressHandler;
-                setTimeout(() => {
-                    canBeContinued = true;
-                    EnemyAttack();
-                }, 1500);
-            }
-        });
+        if (document.getElementsByClassName('select')[1].textContent === 'Magic') {
+            variables.Hero.magic.forEach(magic => {
+                if (magic.name === option) {
+                    document.getElementById('magic').remove();
+                    defineMagic(magic);
+                    document.onkeydown = keyPressHandler;
+                    setTimeout(() => {
+                        canBeContinued = true;
+                        EnemyAttack();
+                    }, 1500);
+                }
+            });
+        }
+        else {
+            variables.Hero.inventory.food.forEach(food => {
+                if (food.name === option) {
+                    food.apply(variables.Hero);
+                    document.getElementById('help').remove();
+                    document.onkeydown = keyPressHandler;
+                    setTimeout(() => {
+                        canBeContinued = true;
+                        EnemyAttack();
+                    }, 1500);
+                    heroHealth.textContent = 'Your HP: ' + variables.Hero.Hp;
+                    heroMP.textContent = 'Your MP: ' + variables.Hero.mana;
+                    return;
+                }
+            });
+            variables.Hero.inventory.drinks.forEach(drink => {
+                if (drink.name === option) {
+                    drink.apply(variables.Hero);
+                    document.getElementById('help').remove();
+                    document.onkeydown = keyPressHandler;
+                    setTimeout(() => {
+                        canBeContinued = true;
+                        EnemyAttack();
+                    }, 1500);
+                    heroHealth.textContent = 'Your HP: ' + variables.Hero.Hp;
+                    heroMP.textContent = 'Your MP: ' + variables.Hero.mana;
+                    return;
+                }
+            });
+        }
     }
 }
 
@@ -221,6 +263,7 @@ function ApplyMagic() {
         magic.style.color = '#fff';
         magic.style.paddingLeft = '15%';
         magic.textContent = variables.Hero.magic[i].name;
+
         magicDiv.appendChild(magic);
     }
     magicDiv.children[0].classList.add('select');
@@ -233,13 +276,13 @@ function ApplyMagic() {
 function defineMagic(magic) {
     if (magic.__proto__.constructor.name === 'Magic') {
         magic.apply(Attack, variables.Hero);
-        heroMP.textContent = 'Your MP: ' + variables.Hero.mana;
     }
     else if (magic.__proto__.constructor.name === 'SkillMagic') {
         magic.apply(variables.Hero);
         heroHealth.textContent = 'Your HP: ' + variables.Hero.Hp;
-        heroMP.textContent = 'Your MP: ' + variables.Hero.mana;
     }
+
+    heroMP.textContent = 'Your MP: ' + variables.Hero.mana;
 }
 
 function win() {
@@ -264,25 +307,55 @@ function ApplyHelp() {
     let help = document.createElement('div');
     help.classList.add('help', 'appearance');
     help.id = 'help';
-    for (let i = 0; i < variables.Hero.inventory.food.length; i++) {
+    let keys = Object.keys(variables.Hero.inventory.food);
+    for (let i = 0; i < keys.length; i++) {
+        let foodWrapper = document.createElement('div');
+        foodWrapper.style.display = 'flex';
+        foodWrapper.style.width = '100%';
+        foodWrapper.style.justifyContent = 'space-around';
+
         let food = document.createElement('span');
         food.style.fontSize = '1.5rem';
         food.style.color = '#fff';
-        food.style.paddingLeft = '15%';
-        food.textContent = variables.Hero.inventory.food[i].name;
-        help.appendChild(food);
+        food.textContent = foods[keys[i]].name;
+
+        let foodCount = document.createElement('span');
+        foodCount.style.fontSize = '1.5rem';
+        foodCount.style.color = '#fff';
+        foodCount.textContent = variables.Hero.inventory.food[keys[i]];
+
+        foodWrapper.appendChild(food);
+        foodWrapper.appendChild(foodCount);
+
+        help.appendChild(foodWrapper);
     }
 
-    for (let i = 0; i < variables.Hero.inventory.drinks.length; i++) {
+    keys = Object.keys(variables.Hero.inventory.drinks);
+    for (let i = 0; i < keys.length; i++) {
+        let drinkWrapper = document.createElement('div');
+        drinkWrapper.style.display = 'flex';
+        drinkWrapper.style.width = '100%';
+        drinkWrapper.style.justifyContent = 'space-around';
+
         let drink = document.createElement('span');
         drink.style.fontSize = '1.5rem';
         drink.style.color = '#fff';
         drink.style.paddingLeft = '15%';
-        drink.textContent = variables.Hero.inventory.drinks[i].name;
-        help.appendChild(drink);
+        drink.textContent = drinks[keys[i]].name;
+
+        let drinkCount = document.createElement('span');
+        drinkCount.style.fontSize = '1.5rem';
+        drinkCount.style.color = '#fff';
+        drinkCount.textContent = variables.Hero.inventory.drinks[keys[i]];
+
+        drinkWrapper.appendChild(drink);
+        drinkWrapper.appendChild(drinkCount);
+
+        help.appendChild(drinkWrapper);
     }
 
-    help.children[0].classList.add('select');
+    help.children[0].children[0].classList.add('select');
+    help.children[0].children[1].classList.add('select');
 
     main.appendChild(help);
 
