@@ -185,7 +185,8 @@ function Enter(option) {
         }
     }
     else {
-        if (document.getElementsByClassName('select')[1].textContent === 'Magic') {
+        let a = document.getElementsByClassName('select')[1];
+        if (document.getElementsByClassName('select')[0].textContent === 'Magic') {
             variables.Hero.magic.forEach(magic => {
                 if (magic.name === option) {
                     document.getElementById('magic').remove();
