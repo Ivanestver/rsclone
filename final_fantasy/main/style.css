@@ -1,3 +1,7 @@
+:root {
+    --det: 6;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +9,7 @@
 
 main {
     display: grid;
-    grid-template: repeat(4, 25vh) / repeat(4, 25vw);
+    grid-template: repeat(var(--det), calc(100vh / var(--det))) / repeat(var(--det), calc(100vw / var(--det)));
 }
 
 .cell {
@@ -15,4 +19,179 @@ main {
 .cell-img {
     width: 100%;
     height: 100%;
+}
+
+.turns {
+    position: absolute;
+
+    width: 30%;
+    height: 15%;
+
+    left: calc((100vw - 30%) / 2);
+    top: 2%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.appearance {
+    border: 2px solid #c1bfab;
+    border-radius: 18%;
+    background: #3f3fff;
+}
+
+.text {
+    font-size: 4rem;
+    color: #fff;
+    text-align: center;
+}
+
+.healthWrapper {
+    position: absolute;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    width: 99vw;
+    height: 16%;
+    top: calc(100vh - 18%);
+}
+
+.health {
+    font-size: 4rem;
+    color: #fff;
+}
+
+.actions {
+    position: absolute;
+
+    width: 11%;
+    left: calc((100vw - 11%) / 2);
+    top: calc(100vh - 37%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.select {
+    font-weight: 600;
+}
+
+.magic {
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    width: 40vw;
+    height: 25vh;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.help {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 13vw;
+}
+
+.menuWrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #000;
+}
+
+.menuBlock {
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    height: 60vh;
+    justify-content: space-evenly;
+}
+
+.menu-item {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #fff;
+}
+
+.choose-window {
+    display: flex;
+    width: 40vw;
+    height: 50vh;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.choose-img {
+    width: 130%;
+}
+
+.arrow {
+    height: 40%;
+    font-size: 8rem;
+    color: white;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    height: 40vh;
+}
+
+.button {
+    width: 100%;
+    height: 50%;
+    font-size: 8rem;
+    color: white;
+}
+
+.write-name {
+    width: 75vw;
+    height: 63vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.input {
+    width: 70%;
+    height: 20%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 3rem;
+}
+
+.name-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    height: 20%;
+}
+
+.name-button {
+    width: 25%;
+    height: 100%;
+    font-size: 3.3rem;
 }
