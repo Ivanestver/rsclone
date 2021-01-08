@@ -104,6 +104,14 @@ main {
     width: 13vw;
 }
 
+.logo-wrapper {
+    width: 36vw;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .menuWrapper {
     position: absolute;
     left: 0;
@@ -113,7 +121,7 @@ main {
     height: 100vh;
 
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 
     background: #000;

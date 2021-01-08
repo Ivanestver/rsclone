@@ -1,23 +1,6 @@
-import { Grass, Mountain } from "./classes/nature";
 import { createHero } from "./createHero";
-import { variables } from "./variables";
 
 document.addEventListener('DOMContentLoaded', () => {
-
-    /*for (let i = 0; i < variables.mapSize; i += 1) {
-        variables.Map.push([]);
-    }
-
-    for (let i = 0; i < variables.mapSize; i += 1) {
-        variables.Map[0].push(new Mountain('Mountain', 'Mountain.png'));
-        variables.Map[variables.mapSize - 1].push(new Mountain('Mountain', 'Mountain.png'));
-    }
-
-    variables.Map[1].push(new Mountain('Mountain', 'Mountain.png'), new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png'));
-    variables.Map[2].push(new Mountain('Mountain', 'Mountain.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png'));
-    variables.Map[3].push(new Mountain('Mountain', 'Mountain.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png'));
-    variables.Map[4].push(new Mountain('Mountain', 'Mountain.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), variables.Hero, new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png'));
-        */
     mainMenu();
 });
 
@@ -27,6 +10,15 @@ export function mainMenu() {
 }
 
 function createMenu() {
+    let logoWrap = document.createElement('div');
+    logoWrap.classList.add('logo-wrapper', 'appearance');
+
+    let logo = document.createElement('span');
+    logo.textContent = 'Final Fantasy 0';
+    logo.classList.add('menu-item');
+    logo.style.fontSize = '4rem';
+    logoWrap.appendChild(logo);
+
     let menuWrapper = document.createElement('div');
     menuWrapper.classList.add('menuWrapper');
     menuWrapper.id = 'mainMenu';
@@ -52,7 +44,9 @@ function createMenu() {
     menuBlock.appendChild(settings);
     menuBlock.appendChild(about);
 
+    menuWrapper.appendChild(logoWrap);
     menuWrapper.appendChild(menuBlock);
+    menuWrapper.style.flexDirection = 'column';
 
     document.body.appendChild(menuWrapper);
 }
