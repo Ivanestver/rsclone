@@ -27,7 +27,7 @@ export var lightning = new Magic('God of lightning', 20, 5); // attack with a li
 export var fire = new Magic('Final Fire', 20, 7); // attack with fire
 export var freezing = new Magic('Dismobilized', 0, 10); // freezes an enemy
 export var powerman = new SkillMagic('PowerMan', 20, 15, function(hero) {
-    hero.power += this.power;
+    hero.addPower += this.power;
     hero.mana -= this.mana;
 }); // improves the power of a hero
 export var getMP = new SkillMagic('The Magic Scrolls', 30, 5, function(hero) {

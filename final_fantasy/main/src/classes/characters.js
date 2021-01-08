@@ -54,6 +54,8 @@ export class Hero extends Character {
             }
         }
 
+        this.addPower = 0;
+
         this.magic = [cure, lightning, fire, freezing, powerman, getMP];
 
         this.mana = mana;
@@ -76,7 +78,7 @@ export class Hero extends Character {
     }
 
     get Power() {
-        return this.inventory.weapon.power;
+        return this.inventory.weapon.power + this.addPower;
     }
 
     copy(obj) {
@@ -106,6 +108,6 @@ export class Villager extends Character {
 
 export class DarkKnight extends Character {
     constructor(hp, money, xp) {
-        super('Dark Knight', false, 'DarkKnight.png', hp, 100, true, money, xp);
+        super('Dark Knight', false, 'DarkKnight.png', hp, 10, true, money, xp);
     }
 }
