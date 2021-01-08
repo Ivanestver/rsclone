@@ -185,7 +185,6 @@ function Enter(option) {
         }
     }
     else {
-        let a = document.getElementsByClassName('select')[1];
         if (document.getElementsByClassName('select')[0].textContent === 'Magic') {
             variables.Hero.magic.forEach(magic => {
                 if (magic.name === option) {
@@ -268,6 +267,11 @@ function Attack(power) {
 
 function EnemyAttack() {
     variables.Hero.Hp -= variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].Power;
+    if (variables.Hero.Hp <= 0) {
+        heroHealth.textContent = 'Your HP: 0';
+        lose();
+        return;
+    }
     heroHealth.textContent = 'Your HP: ' + variables.Hero.Hp;
     textTurn.textContent = 'Your turn!';
 }
@@ -321,6 +325,13 @@ function win() {
     setTimeout(() => {
         initMap();
     }, 6000);
+}
+
+function lose() {
+    textTurn.textContent = 'You lose!';
+    setTimeout(() => {
+        initMap();
+    }, 2000);
 }
 
 function ApplyHelp() {

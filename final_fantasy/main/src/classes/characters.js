@@ -36,8 +36,8 @@ export class Character extends Object {
 }
 
 export class Hero extends Character {
-    constructor(name, hp, power, mana) {
-        super(name, true, 'Hero.png', hp, power, false, 0, 0);
+    constructor(name, hp, power, mana, src) {
+        super(name, true, src, hp, power, false, 0, 0);
 
         this.inventory = {
             weapon: new Sword('Simple Sword', 'SimpleSword.png', 5),
@@ -57,6 +57,14 @@ export class Hero extends Character {
         this.magic = [cure, lightning, fire, freezing, powerman, getMP];
 
         this.mana = mana;
+    }
+
+    get Name() {
+        return this.name;
+    }
+
+    set Name(value) {
+        this.name = value;
     }
 
     get Hp() {
@@ -98,6 +106,6 @@ export class Villager extends Character {
 
 export class DarkKnight extends Character {
     constructor(hp, money, xp) {
-        super('Dark Knight', false, 'DarkKnight.png', hp, 10, true, money, xp);
+        super('Dark Knight', false, 'DarkKnight.png', hp, 100, true, money, xp);
     }
 }

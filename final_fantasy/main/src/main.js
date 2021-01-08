@@ -1,13 +1,12 @@
-import { Hero } from "./classes/characters";
 import { createFight } from "./fight";
 import { move } from "./move";
 import { variables } from "./variables";
+import { pauseMenu } from "./PauseMenu";
 
 const { Mountain, Grass } = require("./classes/nature");
 var main = document.getElementsByClassName('main')[0];
 
-document.addEventListener('DOMContentLoaded', () => {
-
+export function initMap() {
     for (let i = 0; i < variables.mapSize; i += 1) {
         variables.Map.push([]);
     }
@@ -22,10 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     variables.Map[3].push(new Mountain('Mountain', 'Mountain.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png'));
     variables.Map[4].push(new Mountain('Mountain', 'Mountain.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), variables.Hero, new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png'));
 
-    initMap();
-});
-
-export function initMap() {
     document.onkeydown = input;
     paintMap();
 }
@@ -53,6 +48,9 @@ export function paintMap(Map = variables.Map) {
 export function input(event) {
     if (event.key === 'c') {
         createFight(event);
+    }
+    else if (event.key === 'Escape') {
+        pauseMenu();
     }
     else {
         move(event);
