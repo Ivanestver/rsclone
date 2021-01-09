@@ -1,8 +1,8 @@
 import { createHero } from "./createHero";
 
-document.addEventListener('DOMContentLoaded', () => {
+/*document.addEventListener('DOMContentLoaded', () => {
     mainMenu();
-});
+});*/
 
 export function mainMenu() {
     createMenu();
@@ -26,9 +26,9 @@ function createMenu() {
     let menuBlock = document.createElement('div');
     menuBlock.classList.add('menuBlock', 'appearance');
 
-    let contunueGame = document.createElement('span');
-    contunueGame.textContent = 'Contunue Game';
-    contunueGame.classList.add('menu-item', 'select');
+    let continueGame = document.createElement('span');
+    continueGame.textContent = 'Contunue Game';
+    continueGame.classList.add('menu-item', 'select');
     let newGame = document.createElement('span');
     newGame.textContent = 'New Game';
     newGame.classList.add('menu-item');
@@ -39,7 +39,7 @@ function createMenu() {
     about.textContent = 'About';
     about.classList.add('menu-item');
 
-    menuBlock.appendChild(contunueGame);
+    menuBlock.appendChild(continueGame);
     menuBlock.appendChild(newGame);
     menuBlock.appendChild(settings);
     menuBlock.appendChild(about);

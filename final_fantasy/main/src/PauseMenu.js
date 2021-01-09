@@ -1,27 +1,87 @@
+import { variables } from "./variables";
+import { input as Input } from "./main";
+import { mainMenu } from "./mainMenu";
+
 export function pauseMenu() {
     createMenu();
-    document.onkeydown = click;
+    document.onkeydown = input;
 }
 
 function createMenu() {
-    let chooseWindow = document.createElement('div');
-    chooseWindow.classList.add('choose-window', 'appearance');
+    let pauseWrapper = document.createElement('div');
+    pauseWrapper.style.justifyContent = 'center';
+    pauseWrapper.classList.add('menuWrapper');
+    pauseWrapper.id = 'pause';
 
-    let leftArrow = document.createElement('span');
-    leftArrow.textContent = '&lt;';
+    let imgWrapper = document.createElement('div');
+    imgWrapper.classList.add('appearance');
+    imgWrapper.style.display = 'flex';
+    imgWrapper.style.width = '30%';
+    imgWrapper.style.height = '55%';
+    imgWrapper.style.justifyContent = 'center';
+    imgWrapper.style.alignItems = 'center';
 
     let img = document.createElement('img');
-    img.src = '../assets/sprites/Characters/Hero.png';
+    img.src = variables.Hero.src;
+    img.style.width = '45%';
 
-    let rightArrow = document.createElement('span');
-    rightArrow.textContent = '&gt;';
+    imgWrapper.appendChild(img);
 
-    chooseWindow.appendChild(leftArrow);
-    chooseWindow.appendChild(img);
-    chooseWindow.appendChild(rightArrow);
+    let pause = document.createElement('div');
+    pause.classList.add('pause', 'appearance');
+
+    let continueGame = document.createElement('span');
+    continueGame.textContent = 'Continue';
+    continueGame.classList.add('menu-item', 'select');
+    continueGame.style.fontSize = '3rem';
+
+    let character = document.createElement('span');
+    character.textContent = 'Character';
+    character.classList.add('menu-item');
+    character.style.fontSize = '3rem';
+
+    let inventory = document.createElement('span');
+    inventory.textContent = 'Inventory';
+    inventory.classList.add('menu-item');
+    inventory.style.fontSize = '3rem';
+
+    let save = document.createElement('span');
+    save.textContent = 'Save game';
+    save.classList.add('menu-item');
+    save.style.fontSize = '3rem';
+
+    let load = document.createElement('span');
+    load.textContent = 'Load game';
+    load.classList.add('menu-item');
+    load.style.fontSize = '3rem';
+
+    let exit = document.createElement('span');
+    exit.textContent = 'Main menu';
+    exit.classList.add('menu-item');
+    exit.style.fontSize = '3rem';
+
+    pause.appendChild(continueGame);
+    pause.appendChild(character);
+    pause.appendChild(inventory);
+    pause.appendChild(save);
+    pause.appendChild(load);
+    pause.appendChild(exit);
+
+    pauseWrapper.appendChild(imgWrapper);
+    pauseWrapper.appendChild(pause);
+
+    document.body.appendChild(pauseWrapper);
 }
 
-function click(event) {
+function input(event) {
+    if (event.key === 'Escape') {
+        if (document.getElementById('pause') !== null) {
+            document.getElementById('pause').remove();
+            document.onkeydown = Input;
+            return;
+        }
+    }
+
     let current = document.getElementsByClassName('select')[0];
 
     if (event.key === 'Enter') {
@@ -62,17 +122,46 @@ function click(event) {
 }
 
 function Enter(option) {
+    switch (option) {
+        case 'Continue':
+            if (document.getElementById('pause') !== null) {
+                document.getElementById('pause').remove();
+                document.onkeydown = Input;
+                return;
+            }
+            break;
+        case 'Character':
+            character();
+            break;
+        case 'Inventory':
+            inventory();
+            break;
+        case 'Save game':
+            save();
+            break;
+        case 'Load game':
+            load();
+            break;
+        case 'Main menu':
+            document.getElementById('pause').remove();
+            document.getElementsByClassName('main')[0].innerHTML = '';
+            mainMenu();
+            break;
+    }
+}
+
+function character() {
 
 }
 
-function continueGame() {
+function inventory() {
 
 }
 
-function newGame() {
+function save() {
 
 }
 
-function About() {
+function load() {
 
 }

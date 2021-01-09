@@ -2,11 +2,17 @@ import { createFight } from "./fight";
 import { move } from "./move";
 import { variables } from "./variables";
 import { pauseMenu } from "./PauseMenu";
+import { Hero } from "./classes/characters";
 
 const { Mountain, Grass } = require("./classes/nature");
 var main = document.getElementsByClassName('main')[0];
 
+
+document.addEventListener('DOMContentLoaded', initMap);
+
 export function initMap() {
+    variables.Hero = new Hero('Ivan', 100, 10, 100, 'Warrior.png');
+
     for (let i = 0; i < variables.mapSize; i += 1) {
         variables.Map.push([]);
     }
