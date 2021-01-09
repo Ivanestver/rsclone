@@ -81,6 +81,10 @@ export class Hero extends Character {
         return this.inventory.weapon.power + this.addPower;
     }
 
+    get Defence() {
+        return this.inventory.armory.defence;
+    }
+
     copy(obj) {
         obj = new Hero();
         obj.Name = this.Name;

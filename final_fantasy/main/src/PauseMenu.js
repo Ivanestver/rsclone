@@ -2,6 +2,7 @@ import { variables } from "./variables";
 import { input as Input } from "./main";
 import { mainMenu } from "./mainMenu";
 import { inventory } from "./inventory";
+import { createSpecifications } from "./specifications";
 
 export function pauseMenu() {
     if (document.getElementById('pause') === null) {
@@ -156,7 +157,7 @@ function Enter(option) {
 }
 
 function character() {
-
+    createSpecifications();
 }
 
 function save() {
