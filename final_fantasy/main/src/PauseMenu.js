@@ -1,9 +1,13 @@
 import { variables } from "./variables";
 import { input as Input } from "./main";
 import { mainMenu } from "./mainMenu";
+import { inventory } from "./inventory";
 
 export function pauseMenu() {
-    createMenu();
+    if (document.getElementById('pause') === null) {
+        createMenu();
+    }
+    
     document.onkeydown = input;
 }
 
@@ -134,6 +138,7 @@ function Enter(option) {
             character();
             break;
         case 'Inventory':
+            //document.getElementById('pause').remove();
             inventory();
             break;
         case 'Save game':
@@ -151,10 +156,6 @@ function Enter(option) {
 }
 
 function character() {
-
-}
-
-function inventory() {
 
 }
 
