@@ -85,7 +85,13 @@ function Enter(option = 'No') {
 }
 
 function save() {
-    let a = JSON.stringify(variables.Hero);
+    let date = new Date();
 
-    localStorage.setItem('ff', a);
+    let saveObj = {
+        date: `${date.getDate()}.${date.getMonth() < 9 ? '0' : ''}${date.getMonth() + 1}.${date.getFullYear()}`,
+        time: `${date.getHours()}:${date.getMinutes()}`,
+        hero: variables.Hero
+    }
+
+    localStorage.setItem('ff', JSON.stringify(saveObj));
 }

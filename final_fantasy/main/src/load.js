@@ -1,40 +1,46 @@
+import { pauseMenu } from "./PauseMenu";
 import { variables } from "./variables";
 
 export function loadGame() {
+    createLoad(getData());
+    document.onkeydown = input;
+}
+
+function createLoad(data) {
     let wrap = document.createElement('div');
     wrap.classList.add('menuWrapper');
 
     wrap.id = 'load';
 
     let wrapper = document.createElement('div');
-    wrapper.classList.add('appearance');
+    wrapper.classList.add('load', 'appearance');
     wrapper.style.display = 'flex';
 
     let img = document.createElement('img');
-    img.src = variables.Hero.Src;
+    img.src = data.hero.src;
     let specs = document.createElement('table');
 
     let name = document.createElement('td');
     name.colSpan = 2;
-    name.textContent = variables.Hero.Name;
+    name.textContent = data.hero.name;
     name.classList.add('menu-item');
 
     let dataLine = document.createElement('tr');
     let date = document.createElement('td');
-    date.textContent = '10.01.2021';
+    date.textContent = data.date;
     date.classList.add('menu-item');
     let time = document.createElement('td');
-    time.textContent = '17:35';
+    time.textContent = data.time;
     time.classList.add('menu-item');
     dataLine.appendChild(date);
     dataLine.appendChild(time);
 
     let specsLine = document.createElement('tr');
     let exp = document.createElement('td');
-    exp.textContent = `Exp: ${variables.Hero.xp}`;
+    exp.textContent = `Exp: ${data.hero.xp}`;
     exp.classList.add('menu-item');
     let money = document.createElement('td');
-    money.textContent = `Money: ${variables.Hero.money}`;
+    money.textContent = `Money: ${data.hero.money}`;
     money.classList.add('menu-item');
     specsLine.appendChild(exp);
     specsLine.appendChild(money);
@@ -49,4 +55,24 @@ export function loadGame() {
     wrap.appendChild(wrapper);
 
     document.body.appendChild(wrap)
+}
+
+function getData() {
+    let local = localStorage.getItem('ff');
+    return JSON.parse(local);
+}
+
+function input(event) {
+    if (event.key === 'Escape') {
+        document.getElementById('load').remove();
+        pauseMenu();
+    }
+
+    if (event.key === 'Enter') {
+        Enter();
+    }
+}
+
+function Enter() {
+
 }
