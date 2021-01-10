@@ -71,15 +71,14 @@ function getData() {
 function input(event) {
     if (event.key === 'Escape') {
         pauseMenu();
+        document.getElementById('load').remove();
     }
 
     if (event.key === 'Enter') {
         data.hero.src = data.hero.src.split('/')[4];
         variables.Hero = new Hero(data.hero);
         initMap();
+        document.getElementById('load').remove();
         document.getElementById('pause').remove();
     }
-
-    document.getElementById('load').remove();
-    console.log(document.onkeydown);
 }

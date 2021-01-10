@@ -34,3 +34,5 @@ export var getMP = new SkillMagic('The Magic Scrolls', 30, 5, function(hero) {
     hero.mana += this.power;
     hero.mana -= this.mana;
 }); // restores 30 MP (mana points) to a hero
+
+export var magics = [cure, lightning, fire, freezing, powerman, getMP];

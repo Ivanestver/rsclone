@@ -253,7 +253,7 @@ function Enter(option) {
 function Attack(power) {
     variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].Hp -= power;
     enemyHealth.textContent = 'Enemy: ' + variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].Hp;
-    if (variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].Hp === 0) {
+    if (variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].Hp <= 0) {
         win();
         return;
     }

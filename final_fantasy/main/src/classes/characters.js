@@ -1,7 +1,7 @@
 import { Armory } from "./armories";
-import { cure, fire, freezing, lightning, powerman, getMP } from "./magic";
+import { cure, fire, freezing, lightning, powerman, getMP, magics } from "./magic";
 import { Object } from "./object";
-import { Sword } from "./weapons";
+import { Weapon } from "./weapons";
 
 export class Character extends Object {
     constructor(name, isWalkable, src, hp, power, isEnemy, money, xp) {
@@ -46,7 +46,7 @@ export class Hero extends Character {
 
         if (options.length > 1) {
             this.inventory = {
-                weapon: new Sword('Simple Sword', 'SimpleSword.png', 5),
+                weapon: new Weapon('Simple Sword', 'SimpleSword.png', 5),
                 armory: new Armory('Leather armory', 'LeatherArmory.png', 5),
                 food: {
                     apple: 1,
@@ -71,7 +71,14 @@ export class Hero extends Character {
 
             this.addPower = options[0].addPower;
 
-            this.magic = options[0].magic;
+            this.magic = [];
+            options[0].magic.forEach(magic => {
+                for (let i = 0; i < magics.length; i++) {
+                    if (magic.name === magics[i].name) {
+                        this.magic.push(magics[i]);
+                    }
+                }
+            });
 
             this.mana = options[0].mana;
         }
