@@ -3,6 +3,7 @@ import { input as Input } from "./main";
 import { mainMenu } from "./mainMenu";
 import { inventory } from "./inventory";
 import { createSpecifications } from "./specifications";
+import { saveGame } from "./save";
 
 export function pauseMenu() {
     if (document.getElementById('pause') === null) {
@@ -161,7 +162,7 @@ function character() {
 }
 
 function save() {
-
+    saveGame();
 }
 
 function load() {
