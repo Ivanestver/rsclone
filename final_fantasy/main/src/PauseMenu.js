@@ -4,6 +4,7 @@ import { mainMenu } from "./mainMenu";
 import { inventory } from "./inventory";
 import { createSpecifications } from "./specifications";
 import { saveGame } from "./save";
+import { loadGame } from "./load";
 
 export function pauseMenu() {
     if (document.getElementById('pause') === null) {
@@ -166,5 +167,5 @@ function save() {
 }
 
 function load() {
-
+    loadGame();
 }
