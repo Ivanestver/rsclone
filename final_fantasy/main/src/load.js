@@ -1,12 +1,18 @@
+import { Hero } from "./classes/characters";
+import { initMap } from "./main";
 import { pauseMenu } from "./PauseMenu";
 import { variables } from "./variables";
 
+var data = null;
+
 export function loadGame() {
-    createLoad(getData());
+    data = getData();
+    console.log(data);
+    createLoad();
     document.onkeydown = input;
 }
 
-function createLoad(data) {
+function createLoad() {
     let wrap = document.createElement('div');
     wrap.classList.add('menuWrapper');
 
@@ -64,15 +70,16 @@ function getData() {
 
 function input(event) {
     if (event.key === 'Escape') {
-        document.getElementById('load').remove();
         pauseMenu();
     }
 
     if (event.key === 'Enter') {
-        Enter();
+        data.hero.src = data.hero.src.split('/')[4];
+        variables.Hero = new Hero(data.hero);
+        initMap();
+        document.getElementById('pause').remove();
     }
-}
 
-function Enter() {
-
+    document.getElementById('load').remove();
+    console.log(document.onkeydown);
 }

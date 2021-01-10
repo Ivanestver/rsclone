@@ -36,29 +36,45 @@ export class Character extends Object {
 }
 
 export class Hero extends Character {
-    constructor(name, hp, power, mana, src) {
-        super(name, true, src, hp, power, false, 0, 0);
-
-        this.inventory = {
-            weapon: new Sword('Simple Sword', 'SimpleSword.png', 5),
-            armory: new Armory('Leather armory', 'LeatherArmory.png', 5),
-            food: {
-                apple: 1,
-                bread: 1,
-                meat: 1
-            },
-            drinks: {
-                water: 1,
-                tea: 1,
-                cola: 1
-            }
+    constructor(...options) {
+        if (options.length > 1) {
+            super(options[0], true, options[4], options[1], options[2], false, 0, 0);
+        }
+        else {
+            super(options[0].name, true, options[0].src, options[0].hp, options[0].power, false, options[0].money, options[0].xp);
         }
 
-        this.addPower = 0;
+        if (options.length > 1) {
+            this.inventory = {
+                weapon: new Sword('Simple Sword', 'SimpleSword.png', 5),
+                armory: new Armory('Leather armory', 'LeatherArmory.png', 5),
+                food: {
+                    apple: 1,
+                    bread: 1,
+                    meat: 1
+                },
+                drinks: {
+                    water: 1,
+                    tea: 1,
+                    cola: 1
+                }
+            }
 
-        this.magic = [cure, lightning, fire, freezing, powerman, getMP];
+            this.addPower = 0;
 
-        this.mana = mana;
+            this.magic = [cure, lightning, fire, freezing, powerman, getMP];
+
+            this.mana = options[3];
+        }
+        else {
+            this.inventory = options[0].inventory;
+
+            this.addPower = options[0].addPower;
+
+            this.magic = options[0].magic;
+
+            this.mana = options[0].mana;
+        }
     }
 
     get Name() {

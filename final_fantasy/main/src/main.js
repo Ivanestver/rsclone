@@ -11,7 +11,9 @@ var main = document.getElementsByClassName('main')[0];
 document.addEventListener('DOMContentLoaded', initMap);
 
 export function initMap() {
-    variables.Hero = new Hero('Ivan', 100, 10, 100, 'Warrior.png');
+    if (variables.Hero === null) {
+        variables.Hero = new Hero('Ivan', 100, 10, 100, 'Warrior.png');
+    }
 
     for (let i = 0; i < variables.mapSize; i += 1) {
         variables.Map.push([]);
