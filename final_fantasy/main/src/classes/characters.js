@@ -1,4 +1,5 @@
 import { Armory } from "./armories";
+import { levels } from "./level";
 import { cure, fire, freezing, lightning, powerman, getMP, magics } from "./magic";
 import { Object } from "./object";
 import { Weapon } from "./weapons";
@@ -36,6 +37,7 @@ export class Character extends Object {
 }
 
 export class Hero extends Character {
+    
     constructor(...options) {
         if (options.length > 1) {
             super(options[0], true, options[4], options[1], options[2], false, 0, 0);
@@ -65,6 +67,11 @@ export class Hero extends Character {
             this.magic = [cure, lightning, fire, freezing, powerman, getMP];
 
             this.mana = options[3];
+
+            this.level = 1;
+
+            this.maxHp = levels[1].maxHp;
+            this.maxMp = levels[1].maxMp;
         }
         else {
             this.inventory = options[0].inventory;
@@ -81,6 +88,11 @@ export class Hero extends Character {
             });
 
             this.mana = options[0].mana;
+
+            this.level = options[0].level;
+
+            this.maxHp = levels[this.level].maxHp;
+            this.maxMp = levels[this.level].maxMp;
         }
     }
 
@@ -101,7 +113,7 @@ export class Hero extends Character {
     }
 
     get Power() {
-        return this.inventory.weapon.power + this.addPower;
+        return this.power + this.inventory.weapon.power + this.addPower;
     }
 
     get Defence() {

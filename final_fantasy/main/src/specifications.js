@@ -38,6 +38,20 @@ function createWindow() {
     spec.style.width = '50%';
     spec.style.height = '60%';
 
+    // set level
+    let levelWrap = document.createElement('tr');
+
+    let level = document.createElement('td');
+    level.textContent = 'Level';
+    level.classList.add('menu-item');
+
+    let levelAmount = document.createElement('td');
+    levelAmount.textContent = variables.Hero.level;
+    levelAmount.classList.add('menu-item');
+
+    levelWrap.appendChild(level);
+    levelWrap.appendChild(levelAmount);
+
     // set health
     let healthWrap = document.createElement('tr');
 
@@ -94,6 +108,7 @@ function createWindow() {
     defenceWrap.appendChild(defence);
     defenceWrap.appendChild(defenceAmount);
 
+    spec.appendChild(levelWrap);
     spec.appendChild(healthWrap);
     spec.appendChild(manaWrap);
     spec.appendChild(powerWrap);

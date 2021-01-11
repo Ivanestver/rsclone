@@ -2,6 +2,7 @@ import { initMap, paintMap } from "./main";
 import { variables } from "./variables";
 import { DarkKnight } from "./classes/characters";
 import { foods, drinks } from "./classes/supplies";
+import { checkLevel } from "./classes/level";
 
 var main = document.getElementsByClassName('main')[0];
 var heroHealth;
@@ -311,7 +312,8 @@ function defineMagic(magic) {
 
 function win() {
     textTurn.textContent = 'You won!';
-
+    variables.Hero.xp += variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].xp;
+    let delay = checkLevel(variables.Hero, textTurn);
     setTimeout(() => {
         textTurn.textContent = `You got ${variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].money} coins`;
         variables.Hero.money += variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].money;
@@ -319,12 +321,11 @@ function win() {
 
     setTimeout(() => {
         textTurn.textContent = `You got ${variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].xp} xp`;
-        variables.Hero.xp += variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].xp;
     }, 4000);
 
     setTimeout(() => {
         initMap();
-    }, 6000);
+    }, delay);
 }
 
 function lose() {
