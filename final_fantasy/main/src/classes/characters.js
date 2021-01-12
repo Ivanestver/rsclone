@@ -2,7 +2,7 @@ import { Armory } from "./armories";
 import { levels } from "./level";
 import { cure, fire, freezing, lightning, powerman, getMP, magics } from "./magic";
 import { Object } from "./object";
-import { Weapon } from "./weapons";
+import { Weapon, WoodenSword } from "./weapons";
 
 export class Character extends Object {
     constructor(name, isWalkable, src, hp, power, isEnemy, money, xp) {
@@ -48,7 +48,7 @@ export class Hero extends Character {
 
         if (options.length > 1) {
             this.inventory = {
-                weapon: new Weapon('Simple Sword', 'SimpleSword.png', 5),
+                weapon: WoodenSword,
                 armory: new Armory('Leather armory', 'LeatherArmory.png', 5),
                 food: {
                     apple: 1,

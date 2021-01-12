@@ -3,6 +3,7 @@ import { move } from "./move";
 import { variables } from "./variables";
 import { pauseMenu } from "./PauseMenu";
 import { Hero } from "./classes/characters";
+import { trading } from "./trading";
 
 const { Mountain, Grass } = require("./classes/nature");
 var main = document.getElementsByClassName('main')[0];
@@ -56,6 +57,9 @@ export function paintMap(Map = variables.Map) {
 export function input(event) {
     if (event.key === 'c') {
         createFight(event);
+    }
+    else if (event.key === 't') {
+        trading();
     }
     else if (event.key === 'Escape') {
         pauseMenu();

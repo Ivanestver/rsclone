@@ -9,9 +9,9 @@ export class Weapon extends Object {
 }
 
 // Swords
-var WoodenSword = new Weapon('Simple Sword', 5, 20);
-var IronSword = new Weapon('Wooden Sword', 12, 50);
+export var WoodenSword = new Weapon('Wooden Sword', 5, 20);
+export var IronSword = new Weapon('Iron Sword', 12, 50);
 
 // Axes
-var WoodenAxe = new Weapon('Wooden Axe', 6, 25);
-var 
+export var WoodenAxe = new Weapon('Wooden Axe', 6, 25);
+export var IronAxe = new Weapon('Iron Axe', 13, 60);

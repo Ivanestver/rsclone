@@ -1,5 +1,5 @@
 export class Trader {
-    constructor(name, ...items, markup) {
+    constructor(name, markup, ...items) {
         this.name = name;
         this.markup = markup < 1 ? markup : (markup % 10) * 0.1;
         this.items = [];
