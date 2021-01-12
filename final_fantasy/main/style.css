@@ -221,3 +221,15 @@ main {
     justify-content: space-evenly;
     align-items: center;
 }
+
+.load {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 70vw;
+    height: 30vh;
+}
+
+.load img {
+    width: 20%;
+}

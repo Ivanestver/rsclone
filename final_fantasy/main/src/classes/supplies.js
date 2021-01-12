@@ -1,13 +1,14 @@
 class Supply {
-    constructor(name, value) {
+    constructor(name, value, price) {
         this.name = name;
         this.value = value;
+        this.price = price;
     }
 }
 
 class Food extends Supply {
-    constructor(name, value) {
-        super(name, value);
+    constructor(name, value, price) {
+        super(name, value, price);
 
         this.apply = function (hero) {
             hero.Hp += this.value;
@@ -16,8 +17,8 @@ class Food extends Supply {
 }
 
 class Drink extends Supply {
-    constructor(name, value) {
-        super(name, value);
+    constructor(name, value, price) {
+        super(name, value, price);
 
         this.apply = function (hero) {
             hero.mana += this.value;
@@ -26,12 +27,12 @@ class Drink extends Supply {
 }
 
 // Food
-var apple = new Food('Apple', 5);
-var banana = new Food('Banana', 5);
-var bread = new Food('Bread', 10);
-var pizza = new Food('Pizza', 15);
-var fish = new Food('Fish', 50);
-var meat = new Food('Meat', 50);
+var apple = new Food('Apple', 5, 10);
+var banana = new Food('Banana', 5, 10);
+var bread = new Food('Bread', 10, 25);
+var pizza = new Food('Pizza', 15, 30);
+var fish = new Food('Fish', 50, 100);
+var meat = new Food('Meat', 50, 100);
 
 export var foods = {
     apple: apple,
@@ -43,12 +44,12 @@ export var foods = {
 }
 
 // Drinks
-var cola = new Drink('Coca Cola', 10);
-var juice = new Drink('Juice', 10);
-var beer = new Drink('Pizza', 15);
-var tea = new Drink('Tea', 70);
-var milk = new Drink('Bread', 85);
-var water = new Drink('Water', 100);
+var cola = new Drink('Coca Cola', 10, 10);
+var juice = new Drink('Juice', 10, 10);
+var beer = new Drink('Pizza', 15, 20);
+var tea = new Drink('Tea', 70, 50);
+var milk = new Drink('Bread', 85, 70);
+var water = new Drink('Water', 100, 150);
 
 export var drinks = {
     cola: cola,

@@ -52,6 +52,20 @@ function createWindow() {
     levelWrap.appendChild(level);
     levelWrap.appendChild(levelAmount);
 
+    // set money
+    let moneyWrap = document.createElement('tr');
+
+    let money = document.createElement('td');
+    money.textContent = 'Money';
+    money.classList.add('menu-item');
+
+    let moneyAmount = document.createElement('td');
+    moneyAmount.textContent = variables.Hero.money;
+    moneyAmount.classList.add('menu-item');
+
+    moneyWrap.appendChild(money);
+    moneyWrap.appendChild(moneyAmount);
+
     // set health
     let healthWrap = document.createElement('tr');
 
@@ -110,6 +124,7 @@ function createWindow() {
 
     spec.appendChild(levelWrap);
     spec.appendChild(healthWrap);
+    spec.appendChild(moneyWrap);
     spec.appendChild(manaWrap);
     spec.appendChild(powerWrap);
     spec.appendChild(defenceWrap);
