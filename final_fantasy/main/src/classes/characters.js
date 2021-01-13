@@ -59,7 +59,9 @@ export class Hero extends Character {
                     water: 1,
                     tea: 1,
                     cola: 1
-                }
+                },
+                weapons: [],
+                armories: []
             }
 
             this.addPower = 0;

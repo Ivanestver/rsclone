@@ -6,7 +6,7 @@ class Supply {
     }
 }
 
-class Food extends Supply {
+export class Food extends Supply {
     constructor(name, value, price) {
         super(name, value, price);
 
@@ -16,7 +16,7 @@ class Food extends Supply {
     }
 }
 
-class Drink extends Supply {
+export class Drink extends Supply {
     constructor(name, value, price) {
         super(name, value, price);
 

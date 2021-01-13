@@ -7,3 +7,8 @@ export class Armory extends Object {
         this.price = price;
     }
 }
+
+export var leatherArmory = new Armory('Leather Armory', 15, 50);
+export var clothes = new Armory('Simple Clothes', 5, 20);
+
+export var armories = [leatherArmory, clothes];

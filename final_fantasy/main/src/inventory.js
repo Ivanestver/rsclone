@@ -116,7 +116,7 @@ function input(event) {
     }
 }
 
-function chooseItem(up = 0) {
+export function chooseItem(up = 0) {
     let current = document.getElementsByClassName('select')[1];
 
     for (let i = 2; i < current.parentElement.children.length; i++) {

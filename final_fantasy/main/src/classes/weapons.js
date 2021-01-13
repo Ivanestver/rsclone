@@ -15,3 +15,6 @@ export var IronSword = new Weapon('Iron Sword', 12, 50);
 // Axes
 export var WoodenAxe = new Weapon('Wooden Axe', 6, 25);
 export var IronAxe = new Weapon('Iron Axe', 13, 60);
+
+export var weapons = [WoodenSword, IronSword, // Swords
+                      WoodenAxe, IronAxe]; // Axes
