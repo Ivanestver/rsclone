@@ -94,6 +94,7 @@ function defineCategory(event) {
             break;
         case 'Enter':
             current.textContent === 'Buy' ? buy() : sell();
+            document.onkeydown = moving;
             break;
         case 'a':
         case 'A':
@@ -140,26 +141,29 @@ function buy() {
 
         document.getElementById('items').appendChild(itemWrap);
     });
-
-    document.onkeydown = moving;
 }
 
 function moving(event) {
-    let current = document.getElementsByClassName('select')[0];
     switch (event.key) {
         case 'Escape':
             document.getElementById('items').innerHTML = 0;
             document.onkeydown = defineCategory;
             break;
         case 'Enter':
-            if (variables.Hero.money <= 0) {
-                return;
-            }
-            for (let i = 0; i < document.getElementById('items').children.length; i++) {
-                if (document.getElementById('items').children[i].classList.contains('select')) {
-                    defineClass(trader.items[i], document.getElementsByClassName('select')[1].children[0].textContent);
-                    break;
+            if (document.getElementsByClassName('select')[0].textContent === 'Buy') {
+                if (variables.Hero.money <= 0 // if a player doesn't have money
+                    || variables.Hero.money - Number.parseInt(document.getElementsByClassName('select')[1].children[1].textContent) < 0) { // or their amount is not enough
+                    return;
                 }
+                for (let i = 0; i < document.getElementById('items').children.length; i++) {
+                    if (document.getElementById('items').children[i].classList.contains('select')) {
+                        defineClass(trader.items[i], document.getElementsByClassName('select')[1].children[0].textContent);
+                        break;
+                    }
+                }
+            }
+            else {
+                sellItem(document.getElementsByClassName('select')[1]);
             }
             break;
         case 'w':
@@ -182,7 +186,7 @@ function chooseItem(up = 1) {
         if (current.parentElement.children[i].children[0].textContent === current.children[0].textContent) {
             let number = i + ((-1) ** up);
 
-            if (number === current.parentElement.children.length || number === -1) {
+            if (number === current.parentElement.children.length || number === -1 || current.parentElement.children[number].children[0].textContent === 'Name') {
                 return;
             }
 
@@ -234,7 +238,7 @@ function findItem(place, name) {
             let heroKeys = Object.keys(where);
             if (place[keys[i]].name === name) { // find an object of the chosen item
                 if (heroKeys.indexOf(keys[i]) === -1) {
-                    where[heroKeys[heroKeys.indexOf(keys[i])]] = 1;
+                    where[keys[i]] = 1;
                 }
                 else {
                     where[heroKeys[heroKeys.indexOf(keys[i])]] += 1
@@ -248,9 +252,8 @@ function findItem(place, name) {
 }
 
 function sell() {
-    let array = [variables.Hero.food, variables.Hero.drinks, variables.Hero.weapons, variables.Hero.armories];
-
-    let create = function (place, keys) {
+    let create = function (place, heroPlace) {
+        let keys = Object.keys(heroPlace);
         for (let i = 0; i < keys.length; i++) {
             let itemWrap = document.createElement('div');
             itemWrap.style.width = '80%';
@@ -262,28 +265,101 @@ function sell() {
             itemName.classList.add('menu-item');
 
             let itemCount = document.createElement('span');
-            itemCount.textContent = place[keys[i]].price * (1 - trader.markup);
+            itemCount.textContent = heroPlace[keys[i]];
             itemCount.classList.add('menu-item');
+
+            let itemPrice = document.createElement('span');
+            itemPrice.textContent = place[keys[i]].price * (1 - trader.markup);
+            itemPrice.classList.add('menu-item');
 
             itemWrap.appendChild(itemName);
             itemWrap.appendChild(itemCount);
+            itemWrap.appendChild(itemPrice);
 
             document.getElementById('items').appendChild(itemWrap);
         }
     }
 
+    // set header of a table
+    let itemWrap = document.createElement('div');
+    itemWrap.style.width = '80%';
+    itemWrap.style.display = 'flex';
+    itemWrap.style.justifyContent = 'space-evenly';
+
+    let itemName = document.createElement('span');
+    itemName.textContent = 'Name';
+    itemName.classList.add('menu-item');
+
+    let itemCount = document.createElement('span');
+    itemCount.textContent = 'Count';
+    itemCount.classList.add('menu-item');
+
+    let itemPrice = document.createElement('span');
+    itemPrice.textContent = 'Price';
+    itemPrice.classList.add('menu-item');
+
+    itemWrap.appendChild(itemName);
+    itemWrap.appendChild(itemCount);
+    itemWrap.appendChild(itemPrice);
+
+    document.getElementById('items').appendChild(itemWrap);
+
     // set food
-    create(foods, Object.keys(variables.Hero.inventory.food));
-    document.getElementById('items').children[0].classList.add('select');
+    create(foods, variables.Hero.inventory.food);
+    document.getElementById('items').children[1].classList.add('select');
 
     // set drinks
-    create(drinks, Object.keys(variables.Hero.inventory.drinks));
+    create(drinks, variables.Hero.inventory.drinks);
 
     // set weapons
-    create(weapons, Object.keys(variables.Hero.inventory.weapons));
+    create(weapons, variables.Hero.inventory.weapons);
 
     // set armories
-    create(armories, Object.keys(variables.Hero.inventory.armories));
+    create(armories, variables.Hero.inventory.armories);
 
     document.onkeydown = moving;
+}
+
+function sellItem(item) {
+    let categories = [foods, drinks, weapons, armories];
+    let Item = null; // what an item we want to sell
+    let ItemName = '';
+    for (let i = 0; i < categories.length; i++) { // find the Item
+        let items = Object.keys(categories[i]).filter(thing => categories[i][thing].name === item.children[0].textContent)[0];
+        if (items !== undefined) {
+            Item = categories[i][items];
+            ItemName = items;
+            break;
+        }
+    }
+
+    variables.Hero.money += Number.parseInt(item.children[2].textContent); // add money to Hero
+    document.getElementById('coins').textContent = variables.Hero.money; // and show it
+
+    let removeItemFromInventory = (place, name) => {
+        place[name] -= 1;
+        if (place[name] === 0) {
+            delete place[name];
+        }
+    };
+
+    if (Item instanceof Food) {
+        removeItemFromInventory(variables.Hero.inventory.food, ItemName);
+    }
+
+    if (Item instanceof Drink) {
+        removeItemFromInventory(variables.Hero.inventory.drinks, ItemName);
+    }
+
+    if (Item instanceof Weapon) {
+        removeItemFromInventory(variables.Hero.inventory.weapons, ItemName);
+    }
+
+    if (Item instanceof Armory) {
+        removeItemFromInventory(variables.Hero.inventory.armories, ItemName);
+    }
+
+    document.getElementById('items').innerHTML = '';
+
+    sell();
 }

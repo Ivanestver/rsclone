@@ -1,4 +1,4 @@
-import { Armory } from "./armories";
+import { Armory, leatherArmory } from "./armories";
 import { levels } from "./level";
 import { cure, fire, freezing, lightning, powerman, getMP, magics } from "./magic";
 import { Object } from "./object";
@@ -49,7 +49,7 @@ export class Hero extends Character {
         if (options.length > 1) {
             this.inventory = {
                 weapon: WoodenSword,
-                armory: new Armory('Leather armory', 'LeatherArmory.png', 5),
+                armory: leatherArmory,
                 food: {
                     apple: 1,
                     bread: 1,
