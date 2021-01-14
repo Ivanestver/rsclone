@@ -5,6 +5,7 @@ import { inventory } from "./inventory";
 import { createSpecifications } from "./specifications";
 import { saveGame } from "./save";
 import { loadGame } from "./load";
+import { equipment } from "./equipment";
 
 export function pauseMenu() {
     if (document.getElementById('pause') === null) {
@@ -52,6 +53,11 @@ function createMenu() {
     inventory.classList.add('menu-item');
     inventory.style.fontSize = '3rem';
 
+    let equipment = document.createElement('span');
+    inventory.textContent = 'Equipment';
+    inventory.classList.add('menu-item');
+    inventory.style.fontSize = '3rem';
+
     let save = document.createElement('span');
     save.textContent = 'Save game';
     save.classList.add('menu-item');
@@ -70,6 +76,7 @@ function createMenu() {
     pause.appendChild(continueGame);
     pause.appendChild(character);
     pause.appendChild(inventory);
+    pause.appendChild(equipment);
     pause.appendChild(save);
     pause.appendChild(load);
     pause.appendChild(exit);
@@ -143,6 +150,9 @@ function Enter(option) {
         case 'Inventory':
             //document.getElementById('pause').remove();
             inventory();
+            break;
+        case 'Equipment':
+            equipment();
             break;
         case 'Save game':
             save();
