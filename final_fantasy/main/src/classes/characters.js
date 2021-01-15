@@ -1,8 +1,8 @@
-import { Armory, leatherArmory } from "./armories";
+import { Armory, clothes, leatherArmory } from "./armories";
 import { levels } from "./level";
 import { cure, fire, freezing, lightning, powerman, getMP, magics } from "./magic";
 import { Object } from "./object";
-import { Weapon, WoodenSword } from "./weapons";
+import { IronAxe, Weapon, WoodenSword } from "./weapons";
 
 export class Character extends Object {
     constructor(name, isWalkable, src, hp, power, isEnemy, money, xp) {
@@ -60,8 +60,8 @@ export class Hero extends Character {
                     tea: 1,
                     cola: 1
                 },
-                weapons: [],
-                armories: []
+                weapons: [IronAxe],
+                armories: [clothes]
             }
 
             this.addPower = 0;

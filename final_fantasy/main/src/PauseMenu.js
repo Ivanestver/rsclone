@@ -54,9 +54,9 @@ function createMenu() {
     inventory.style.fontSize = '3rem';
 
     let equipment = document.createElement('span');
-    inventory.textContent = 'Equipment';
-    inventory.classList.add('menu-item');
-    inventory.style.fontSize = '3rem';
+    equipment.textContent = 'Equipment';
+    equipment.classList.add('menu-item');
+    equipment.style.fontSize = '3rem';
 
     let save = document.createElement('span');
     save.textContent = 'Save game';
