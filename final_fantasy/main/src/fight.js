@@ -36,6 +36,7 @@ function createHUD() {
     let actions = document.createElement('div');
     actions.classList.add('actions');
     actions.classList.add('appearance');
+    actions.style.borderRadius = '30px';
 
     let attack = document.createElement('span');
     attack.classList.add('text');

@@ -68,7 +68,7 @@ function createTrading() {
     header.appendChild(category);
     header.appendChild(coins);
 
-    let items = document.createElement('div');
+    let items = document.createElement('table');
     items.id = 'items';
     items.classList.add('appearance');
     items.style.display = 'flex';
@@ -117,9 +117,10 @@ function defineCategory(event) {
 
 function buy() {
     let items = trader.getForBuy();
+    document.getElementById('items').style.columnCount = 2;
 
     items.forEach((item, index) => {
-        let itemWrap = document.createElement('div');
+        let itemWrap = document.createElement('tr');
         itemWrap.style.width = '80%';
         itemWrap.style.display = 'flex';
         itemWrap.style.justifyContent = 'space-evenly';
@@ -128,11 +129,11 @@ function buy() {
             itemWrap.classList.add('select');
         }
 
-        let itemName = document.createElement('span');
+        let itemName = document.createElement('td');
         itemName.textContent = item.name;
         itemName.classList.add('menu-item');
 
-        let itemCount = document.createElement('span');
+        let itemCount = document.createElement('td');
         itemCount.textContent = item.price;
         itemCount.classList.add('menu-item');
 
@@ -252,23 +253,24 @@ function findItem(place, name) {
 }
 
 function sell() {
-    let create = function (place, heroPlace) {
+    document.getElementById('items').style.columnCount = 3;
+    let create = function (place, heroPlace, isWeaponOrArmory = false) {
         let keys = Object.keys(heroPlace);
         for (let i = 0; i < keys.length; i++) {
-            let itemWrap = document.createElement('div');
-            itemWrap.style.width = '80%';
+            let itemWrap = document.createElement('tr');
+            //itemWrap.style.width = '80%';
             itemWrap.style.display = 'flex';
             itemWrap.style.justifyContent = 'space-evenly';
 
-            let itemName = document.createElement('span');
+            let itemName = document.createElement('td');
             itemName.textContent = place[keys[i]].name;
             itemName.classList.add('menu-item');
 
-            let itemCount = document.createElement('span');
-            itemCount.textContent = heroPlace[keys[i]];
+            let itemCount = document.createElement('td');
+            itemCount.textContent = isWeaponOrArmory ? '1' : heroPlace[keys[i]];
             itemCount.classList.add('menu-item');
 
-            let itemPrice = document.createElement('span');
+            let itemPrice = document.createElement('td');
             itemPrice.textContent = place[keys[i]].price * (1 - trader.markup);
             itemPrice.classList.add('menu-item');
 
@@ -281,20 +283,20 @@ function sell() {
     }
 
     // set header of a table
-    let itemWrap = document.createElement('div');
-    itemWrap.style.width = '80%';
+    let itemWrap = document.createElement('tr');
+    //itemWrap.style.width = '80%';
     itemWrap.style.display = 'flex';
     itemWrap.style.justifyContent = 'space-evenly';
 
-    let itemName = document.createElement('span');
+    let itemName = document.createElement('td');
     itemName.textContent = 'Name';
     itemName.classList.add('menu-item');
 
-    let itemCount = document.createElement('span');
+    let itemCount = document.createElement('td');
     itemCount.textContent = 'Count';
     itemCount.classList.add('menu-item');
 
-    let itemPrice = document.createElement('span');
+    let itemPrice = document.createElement('td');
     itemPrice.textContent = 'Price';
     itemPrice.classList.add('menu-item');
 
@@ -312,10 +314,10 @@ function sell() {
     create(drinks, variables.Hero.inventory.drinks);
 
     // set weapons
-    create(weapons, variables.Hero.inventory.weapons);
+    create(weapons, variables.Hero.inventory.weapons, true);
 
     // set armories
-    create(armories, variables.Hero.inventory.armories);
+    create(armories, variables.Hero.inventory.armories, true);
 
     document.onkeydown = moving;
 }
