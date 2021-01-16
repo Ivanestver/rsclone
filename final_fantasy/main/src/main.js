@@ -4,6 +4,7 @@ import { variables } from "./variables";
 import { pauseMenu } from "./PauseMenu";
 import { Hero } from "./classes/characters";
 import { trading } from "./trading";
+import { river } from "./classes/maps";
 
 const { Mountain, Grass } = require("./classes/nature");
 var main = document.getElementsByClassName('main')[0];
@@ -31,14 +32,14 @@ export function initMap() {
     variables.Map[4].push(new Mountain('Mountain', 'Mountain.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), variables.Hero, new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png'));
 
     document.onkeydown = input;
-    paintMap();
+    paintMap(river.map);
 }
 
 export function paintMap(Map = variables.Map) {
     main.innerHTML = "";
 
-    for (let i = 0; i < variables.mapSize; i++) {
-        for (let j = 0; j < variables.mapSize; j++) {
+    for (let i = 0; i < Map.length; i++) {
+        for (let j = 0; j < Map.length; j++) {
             let part = document.createElement('section');
             let img = document.createElement('img');
 

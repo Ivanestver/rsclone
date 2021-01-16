@@ -2,7 +2,7 @@ const { Object } = require("./object");
 
 export class Mountain extends Object {
     constructor(name, src) {
-        super(name, false, `Mountains/${src}`);
+        super(name, false, `MapObjects/${src}`);
     }
 
     copy(obj) {
@@ -15,7 +15,7 @@ export class Mountain extends Object {
 
 export class Hill extends Object {
     constructor(name, src) {
-        super(name, true, `Mountains/${src}`);
+        super(name, true, `MapObjects/${src}`);
     }
 
     copy(obj) {
@@ -28,7 +28,7 @@ export class Hill extends Object {
 
 export class Tree extends Object {
     constructor(name, src) {
-        super(name, false, `Trees/${src}`);
+        super(name, false, `MapObjects/${src}`);
     }
 
     copy(obj) {
@@ -41,7 +41,7 @@ export class Tree extends Object {
 
 export class Grass extends Object {
     constructor(name, src) {
-        super(name, true, `Grass/${src}`);
+        super(name, true, `MapObjects/${src}`);
     }
 
     copy(obj) {
@@ -49,5 +49,24 @@ export class Grass extends Object {
         obj.Name = this.Name;
         obj.IsWalkable = this.IsWalkable;
         obj.Src = this.Src;
+    }
+}
+
+export class Water extends Object {
+    constructor(name, src) {
+        super(name, false, `MapObjects/${src}`);
+    }
+
+    copy(obj) {
+        obj = new Water();
+        obj.Name = this.Name;
+        obj.IsWalkable = this.IsWalkable;
+        obj.Src = this.Src;
+    }
+}
+
+export class Bridge extends Object {
+    constructor(name, src) {
+        super(name, true, `MapObjects/${src}`);
     }
 }

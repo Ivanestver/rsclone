@@ -1,5 +1,5 @@
 :root {
-    --det: 6;
+    --det: 8;
 }
 
 * {
@@ -37,7 +37,7 @@ main {
 
 .appearance {
     border: 2px solid #c1bfab;
-    border-radius: 18%;
+    border-radius: 100px;
     background: #3f3fff;
 }
 
@@ -232,4 +232,24 @@ main {
 
 .load img {
     width: 20%;
+}
+
+.list-items-in-equip {
+    position: absolute;
+    width: 22%;
+    height: 10%;
+    max-height: 58%;
+    left: calc(100vw - 23%);
+    top: 21vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+table tr {
+    width: 100%;
+}
+
+table tr td {
+    width: 25%;
 }
