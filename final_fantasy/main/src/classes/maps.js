@@ -112,37 +112,21 @@ export function moveToAnotherLocation(row, column) {
     };
 
     if (row < 0) {
-        /*variables.Map.map[variables.X][variables.Y] = variables.currentPlace;
-        variables.Map = Whole_Map[variables.Map.coords.x - 1][variables.Map.coords.y];
-        variables.X = variables.Map.map.length - 1;
-        True = true;*/
         change(variables.Map.coords.x - 1,
             variables.Map.coords.y);
         variables.X = variables.Map.map.length - 1;
     }
     if (row === variables.Map.map.length) {
-        /*variables.Map.map[variables.X][variables.Y] = variables.currentPlace;
-        variables.Map = Whole_Map[variables.Map.coords.x + 1][variables.Map.coords.y];
-        variables.X = 0;
-        True = true;*/
         change(variables.Map.coords.x + 1,
             variables.Map.coords.y);
         variables.X = 0;
     }
     if (column < 0) {
-       /*variables.Map.map[variables.X][variables.Y] = variables.currentPlace;
-        variables.Map = Whole_Map[variables.Map.coords.x][variables.Map.coords.y - 1];
-        variables.Y = variables.Map.map.length - 1;
-        True = true;*/
         change(variables.Map.coords.x,
             variables.Map.coords.y - 1);
         variables.Y = variables.Map.map.length - 1;
     }
     if (column === variables.Map.map.length) {
-        /*variables.Map.map[variables.X][variables.Y] = variables.currentPlace;
-        variables.Map = Whole_Map[variables.Map.coords.x][variables.Map.coords.y + 1];
-        variables.Y = 0;
-        True = true;*/
         change(variables.Map.coords.x,
             variables.Map.coords.y + 1);
         variables.Y = 0;
