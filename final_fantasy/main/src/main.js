@@ -4,7 +4,7 @@ import { variables } from "./variables";
 import { pauseMenu } from "./PauseMenu";
 import { Hero } from "./classes/characters";
 import { trading } from "./trading";
-import { river, bigLake } from "./classes/maps";
+import { river, bigLake, forrest, village, town, littleLake } from "./classes/maps";
 
 const { Mountain, Grass } = require("./classes/nature");
 var main = document.getElementsByClassName('main')[0];
@@ -17,36 +17,27 @@ export function initMap() {
         variables.Hero = new Hero('Ivan', 100, 10, 100, 'Warrior.png');
     }
 
-    for (let i = 0; i < variables.mapSize; i += 1) {
-        variables.Map.push([]);
-    }
-
-    for (let i = 0; i < variables.mapSize; i += 1) {
-        variables.Map[0].push(new Mountain('Mountain', 'Mountain.png'));
-        variables.Map[variables.mapSize - 1].push(new Mountain('Mountain', 'Mountain.png'));
-    }
-
-    variables.Map[1].push(new Mountain('Mountain', 'Mountain.png'), new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png'));
-    variables.Map[2].push(new Mountain('Mountain', 'Mountain.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png'));
-    variables.Map[3].push(new Mountain('Mountain', 'Mountain.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png'));
-    variables.Map[4].push(new Mountain('Mountain', 'Mountain.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), variables.Hero, new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png'));
+    variables.Map.map[variables.X][variables.Y] === variables.Hero;
 
     document.onkeydown = input;
-    paintMap(bigLake.map);
+    paintMap(town);
 }
 
 export function paintMap(Map = variables.Map) {
     main.innerHTML = "";
+    if (Map != variables.Map) {
+        variables.Map = Map;
+    }
 
-    for (let i = 0; i < Map.length; i++) {
-        for (let j = 0; j < Map.length; j++) {
+    for (let i = 0; i < Map.map.length; i++) {
+        for (let j = 0; j < Map.map.length; j++) {
             let part = document.createElement('section');
             let img = document.createElement('img');
 
             part.classList.add('cell');
             img.classList.add('cell-img');
 
-            img.src = Map[i][j].Src;
+            img.src = Map.map[i][j].Src;
 
             part.appendChild(img);
 

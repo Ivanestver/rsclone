@@ -28,7 +28,7 @@ export class Hill extends Object {
 
 export class Tree extends Object {
     constructor(name, src) {
-        super(name, false, `MapObjects/${src}`);
+        super(name, true, `MapObjects/${src}`);
     }
 
     copy(obj) {
@@ -66,6 +66,12 @@ export class Water extends Object {
 }
 
 export class Bridge extends Object {
+    constructor(name, src) {
+        super(name, true, `MapObjects/${src}`);
+    }
+}
+
+export class Town extends Object {
     constructor(name, src) {
         super(name, true, `MapObjects/${src}`);
     }

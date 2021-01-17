@@ -1,20 +1,21 @@
 import { DarkKnight, Hero } from "./classes/characters";
+import { town } from "./classes/maps";
 import { Grass } from "./classes/nature";
 
 class Variables {
     constructor() {
-        this.Map = [];
+        this.Map = town;
         this.Arena = [];
         this.mapSize = 6;
         this.imgWidth = 320;
         this.hero = null;
 
         // Coordinates of a hero
-        this.X = 4;
+        this.X = 1;
         this.Y = 3;
         this.enemyCoordinates = { x: 2, y: 4 };
 
-        this.currentPlace = new Grass('green grass', 'Grass.png'); // where a hero is staying. It defines what type of ground is under him.
+        this.currentPlace = new Grass('Grass', 'Grass.png'); // where a hero is staying. It defines what type of ground is under him.
     }
 
     get Hero() {
