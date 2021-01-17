@@ -11,9 +11,9 @@ var enemyHealth;
 var canBeContinued = true;  // for delaying after player's attacking
 var textTurn;
 
-export function createFight(event) {
+export function createFight() {
     main.innerHTML = "";
-    variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y] = new DarkKnight(100, 10, 10);
+    variables.Arena.map[variables.enemyCoordinates.x][variables.enemyCoordinates.y] = variables.Map.enemies[Math.floor(Math.random() * (variables.Map.enemies.length - 1))];
     paintMap(variables.Arena);
     createHUD();
     document.onkeydown = keyPressHandler;
@@ -87,7 +87,7 @@ function createHUD() {
 
     enemyHealth = document.createElement('span');
     enemyHealth.classList.add('text');
-    enemyHealth.textContent = `Enemy: ${variables.Arena[2][4].Hp}`;
+    enemyHealth.textContent = `Enemy: ${variables.Arena.map[variables.enemyCoordinates.x][variables.enemyCoordinates.y].Hp}`;
 
     panel.appendChild(hero);
     panel.appendChild(enemyHealth);
@@ -253,9 +253,9 @@ function Enter(option) {
 }
 
 function Attack(power) {
-    variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].Hp -= power;
-    enemyHealth.textContent = 'Enemy: ' + variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].Hp;
-    if (variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].Hp <= 0) {
+    variables.Arena.map[variables.enemyCoordinates.x][variables.enemyCoordinates.y].Hp -= power;
+    enemyHealth.textContent = 'Enemy: ' + variables.Arena.map[variables.enemyCoordinates.x][variables.enemyCoordinates.y].Hp;
+    if (variables.Arena.map[variables.enemyCoordinates.x][variables.enemyCoordinates.y].Hp <= 0) {
         win();
         return;
     }
@@ -268,7 +268,7 @@ function Attack(power) {
 }
 
 function EnemyAttack() {
-    variables.Hero.Hp -= variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].Power;
+    variables.Hero.Hp = variables.Hero.Hp - variables.Arena.map[variables.enemyCoordinates.x][variables.enemyCoordinates.y].Power;
     if (variables.Hero.Hp <= 0) {
         heroHealth.textContent = 'Your HP: 0';
         lose();
@@ -313,15 +313,15 @@ function defineMagic(magic) {
 
 function win() {
     textTurn.textContent = 'You won!';
-    variables.Hero.xp += variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].xp;
+    variables.Hero.xp += variables.Arena.map[variables.enemyCoordinates.x][variables.enemyCoordinates.y].xp;
     let delay = checkLevel(variables.Hero, textTurn);
     setTimeout(() => {
-        textTurn.textContent = `You got ${variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].money} coins`;
-        variables.Hero.money += variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].money;
+        textTurn.textContent = `You got ${variables.Arena.map[variables.enemyCoordinates.x][variables.enemyCoordinates.y].money} coins`;
+        variables.Hero.money += variables.Arena.map[variables.enemyCoordinates.x][variables.enemyCoordinates.y].money;
     }, 2000);
 
     setTimeout(() => {
-        textTurn.textContent = `You got ${variables.Arena[variables.enemyCoordinates.x][variables.enemyCoordinates.y].xp} xp`;
+        textTurn.textContent = `You got ${variables.Arena.map[variables.enemyCoordinates.x][variables.enemyCoordinates.y].xp} xp`;
     }, 4000);
 
     setTimeout(() => {
@@ -393,4 +393,13 @@ function ApplyHelp() {
     main.appendChild(help);
 
     document.onkeydown = (event) => { keyPressHandler(event, 1); };
+}
+
+export function isFight() {
+    let number = Math.floor(Math.random() * 9);
+    if (number === 0) {
+        return true;
+    }
+
+    return false;
 }

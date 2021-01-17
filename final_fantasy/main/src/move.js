@@ -1,4 +1,5 @@
 import { moveToAnotherLocation } from "./classes/maps";
+import { createFight, isFight } from "./fight";
 import { paintMap } from "./main";
 import { variables } from "./variables";
 
@@ -7,35 +8,20 @@ export function move(event) {
         case 'w':
         case 'W':
         case 'ArrowUp':
-            //if (variables.Map[variables.X - 1][variables.Y] !== undefined && variables.Map[variables.X - 1][variables.Y].IsWalkable) {
-            //    replace(variables.X - 1, variables.Y);
-            //}
             replace(variables.X - 1, variables.Y);
             break;
         case 'a':
         case 'A':
         case 'ArrowLeft':
-            //if (variables.Map[variables.X][variables.Y - 1] !== undefined && variables.Map[variables.X][variables.Y - 1].IsWalkable) {
-            //    replace(variables.X, variables.Y - 1);
-            //}
-            //break;
             replace(variables.X, variables.Y - 1);
             break;
         case 's':
         case 'S':
         case 'ArrowDown':
-            //if (variables.Map[variables.X + 1][variables.Y] !== undefined && variables.Map[variables.X + 1][variables.Y].IsWalkable) {
-            //    replace(variables.X + 1, variables.Y);
-            //}
-            //break;
             replace(variables.X + 1, variables.Y);
             break;
         case 'd':
         case 'ArrowRight':
-            //if (variables.Map[variables.X][variables.Y + 1] !== undefined && variables.Map[variables.X][variables.Y + 1].IsWalkable) {
-            //    replace(variables.X, variables.Y + 1);
-            //}
-            //break;
             replace(variables.X, variables.Y + 1);
             break;
     } 
@@ -55,4 +41,25 @@ function replace(row, column) {
     }
 
     paintMap();
+
+    if (isFight()) {
+        let fightWrap = document.createElement('div');
+        fightWrap.classList.add('fight-text-wrap', 'appearance');
+        fightWrap.id = 'fightName';
+
+        let fightText = document.createElement('span');
+        fightText.textContent = 'FIGHT!!!';
+        fightText.classList.add('fight-text');
+
+        fightWrap.appendChild(fightText);
+
+        document.body.appendChild(fightWrap);
+
+        document.onkeydown = null;
+
+        setTimeout(() => {
+            document.getElementById('fightName').remove();
+            createFight();
+        }, 3000);
+    }
 }

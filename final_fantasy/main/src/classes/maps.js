@@ -1,15 +1,16 @@
 import { variables } from "../variables";
-import { Hero } from "./characters";
+import { DarkKnight, Enemy, Hero } from "./characters";
 import { Bridge, Grass, Mountain, Town, Tree, Water } from "./nature";
 
 class Map {
-    constructor(name, map, coords) {
+    constructor(name, map, coords, enemies) {
         this.name = name;
         this.map = map;
         this.coords = {
             x: coords.x,
             y: coords.y
-        }
+        };
+        this.enemies = enemies
     }
 }
 
@@ -38,7 +39,8 @@ export var bigLake = new Map('Big Lake',
         [new Mountain('Mountain', 'Mountain.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png')],
         [new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png')]
     ],
-    { x: 1, y: 0 }
+    { x: 1, y: 0 },
+    [new Enemy('Horrible Crab', 'Crab.png', 100, 15, 15)]
 );
 
 export var forrest = new Map('Forrest',
@@ -80,7 +82,8 @@ export var town = new Map('Town',
         [new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png')],
         [new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png')]
     ],
-    { x: 1, y: 1 }
+    { x: 1, y: 1 },
+    [new Enemy('Dark Knight', 'DarkKnight.png', 100, 10, 10)]
 );
 
 export var littleLake = new Map('Little Lake',

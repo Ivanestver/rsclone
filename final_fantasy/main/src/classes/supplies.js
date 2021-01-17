@@ -11,7 +11,7 @@ export class Food extends Supply {
         super(name, value, price);
 
         this.apply = function (hero) {
-            hero.Hp += this.value;
+            hero.hp += this.value;
         }
     }
 }

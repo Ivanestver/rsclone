@@ -253,3 +253,95 @@ table tr {
 table tr td {
     width: 25%;
 }
+
+@keyframes fightText {
+    0% {
+        color: white;
+    }
+    
+    25% {
+        color: red;
+    }
+
+    50% {
+        color: white;
+    }
+
+    75% {
+        color: red;
+    }
+
+    100% {
+        color: white;
+    }
+}
+
+@-moz-keyframes fightText {
+    0% {
+        color: white;
+    }
+
+    25% {
+        color: red;
+    }
+
+    50% {
+        color: white;
+    }
+
+    75% {
+        color: red;
+    }
+
+    100% {
+        color: white;
+    }
+}
+
+@-webkit-keyframes fightText {
+    0% {
+        color: white;
+    }
+
+    25% {
+        color: red;
+    }
+
+    50% {
+        color: white;
+    }
+
+    75% {
+        color: red;
+    }
+
+    100% {
+        color: white;
+    }
+}
+
+.fight-text-wrap {
+    width: 20%;
+    height: 10%;
+
+    position: absolute;
+
+    left: calc(100vw - 60%);
+    top: calc(100vh - 95%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fight-text {
+    animation: fightText;
+    -moz-animation-duration: 3s;
+    -o-animation-duration: 3s;
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+
+    text-align: center;
+
+    font-size: 3rem;
+}

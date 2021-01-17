@@ -5,15 +5,17 @@ import { Grass } from "./classes/nature";
 class Variables {
     constructor() {
         this.Map = town;
-        this.Arena = [];
-        this.mapSize = 6;
+        this.Arena = {
+            map: []
+        };
+        this.mapSize = 8;
         this.imgWidth = 320;
         this.hero = null;
 
         // Coordinates of a hero
         this.X = 1;
         this.Y = 3;
-        this.enemyCoordinates = { x: 2, y: 4 };
+        this.enemyCoordinates = { x: 3, y: 6 };
 
         this.currentPlace = new Grass('Grass', 'Grass.png'); // where a hero is staying. It defines what type of ground is under him.
     }
@@ -26,19 +28,19 @@ class Variables {
         this.hero = value;
 
         for (let i = 0; i < this.mapSize; i++) {
-            this.Arena.push([]);
+            this.Arena.map.push([]);
             for (let j = 0; j < this.mapSize; j++) {
-                if (i === 2 && j === 4) {
-                    this.Arena[i].push(new DarkKnight(100, 10, 10));
+                if (i === this.enemyCoordinates.x && j === this.enemyCoordinates.y) {
+                    this.Arena.map[i].push(undefined);
                     continue;
                 }
 
-                if (i === 2 && j === 1) {
-                    this.Arena[i].push(this.Hero);
+                if (i === 3 && j === 1) {
+                    this.Arena.map[i].push(this.Hero);
                     continue;
                 }
 
-                this.Arena[i].push(new Grass('Grass', 'Grass.png'));
+                this.Arena.map[i].push(new Grass('Grass', 'Grass.png'));
             }
         }
     }

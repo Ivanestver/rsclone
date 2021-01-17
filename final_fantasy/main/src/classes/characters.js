@@ -111,7 +111,9 @@ export class Hero extends Character {
     }
 
     set Hp(value) {
-        this.hp = value;
+        if (value < this.hp) {
+            this.hp = value;
+        }
     }
 
     get Power() {
@@ -132,6 +134,12 @@ export class Hero extends Character {
     }
 }
 
+export class Enemy extends Character {
+    constructor(name, src, hp, money, xp) {
+        super(name, false, src, hp, 10, true, money, xp);
+    }
+}
+
 export class Villager extends Character {
     constructor(name, src, hp) {
         super(name, true, src, hp, 0, false);
@@ -144,11 +152,5 @@ export class Villager extends Character {
         obj.Src = this.Src;
         obj.Hp = this.Hp;
         obj.IsEnemy = this.IsEnemy;
-    }
-}
-
-export class DarkKnight extends Character {
-    constructor(hp, money, xp) {
-        super('Dark Knight', false, 'DarkKnight.png', hp, 10, true, money, xp);
     }
 }

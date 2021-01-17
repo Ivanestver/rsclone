@@ -20,7 +20,7 @@ export function checkLevel(hero, text) {
         hero.level++;
         hero.maxHp = levels[hero.level].maxHp;
         hero.maxMp = levels[hero.level].maxMp;
-        hero.Hp = levels[hero.level].maxHp;
+        hero.hp = levels[hero.level].maxHp;
         hero.mana = levels[hero.level].maxMp;
 
         setTimeout(() => {
@@ -28,7 +28,7 @@ export function checkLevel(hero, text) {
         }, 6000);
 
         setTimeout(() => {
-            text.textContent = `Your HP: ${hero.Hp}`;
+            text.textContent = `Your HP: ${hero.hp}`;
         }, 8000);
 
         setTimeout(() => {
