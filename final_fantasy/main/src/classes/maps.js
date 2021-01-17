@@ -25,7 +25,8 @@ export var river = new Map('River',
         [new Mountain('Mountain', 'Mountain.png'), new Water('River', 'Water.png'), new Water('River', 'Water.png'), new Water(' River', 'Water.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png')],
         [new Mountain('Mountain', 'Mountain.png'), new Water('River', 'Water.png'), new Water('River', 'Water.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png')]
     ],
-    { x: 0, y: 0}
+    { x: 0, y: 0 },
+    [new Enemy('Scary Fish', 'Fish.png', 200, 50, 55, 60)]
 );
 
 export var bigLake = new Map('Big Lake',
@@ -40,7 +41,7 @@ export var bigLake = new Map('Big Lake',
         [new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png')]
     ],
     { x: 1, y: 0 },
-    [new Enemy('Horrible Crab', 'Crab.png', 100, 15, 15)]
+    [new Enemy('Horrible Crab', 'Crab.png', 100, 15, 15, 15)]
 );
 
 export var forrest = new Map('Forrest',
@@ -54,7 +55,8 @@ export var forrest = new Map('Forrest',
         [new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png')],
         [new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png')]
     ],
-    { x: 0, y: 1 }
+    { x: 0, y: 1 },
+    [new Enemy('Terrible Wolf', 'Wolf.png', 120, 20, 25, 25)]
 );
 
 export var village = new Map('Village',
@@ -68,7 +70,8 @@ export var village = new Map('Village',
         [new Tree('Tree', 'Tree.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png')],
         [new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Mountain('Mountain', 'Mountain.png')]
     ],
-    { x: 0, y: 2 }
+    { x: 0, y: 2 },
+    [new Enemy('Crazy Villager', 'Villager.png', 170, 30, 40, 25)]
 );
 
 export var town = new Map('Town',
@@ -83,7 +86,7 @@ export var town = new Map('Town',
         [new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png')]
     ],
     { x: 1, y: 1 },
-    [new Enemy('Dark Knight', 'DarkKnight.png', 100, 10, 10)]
+    [new Enemy('Dark Knight', 'DarkKnight.png', 100, 10, 10, 10)]
 );
 
 export var littleLake = new Map('Little Lake',
@@ -97,7 +100,8 @@ export var littleLake = new Map('Little Lake',
         [new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Grass('Grass', 'Grass.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Mountain('Mountain', 'Mountain.png')],
         [new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png')]
     ],
-    { x: 1, y: 2 }
+    { x: 1, y: 2 },
+    [new Enemy('Drowned', 'Drowned.png', 150, 45, 50, 30)]
 );
 
 export var Whole_Map = [

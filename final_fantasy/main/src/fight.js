@@ -1,6 +1,5 @@
 import { initMap, paintMap } from "./main";
 import { variables } from "./variables";
-import { DarkKnight } from "./classes/characters";
 import { foods, drinks } from "./classes/supplies";
 import { checkLevel } from "./classes/level";
 

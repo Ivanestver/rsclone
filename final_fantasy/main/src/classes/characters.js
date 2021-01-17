@@ -135,8 +135,8 @@ export class Hero extends Character {
 }
 
 export class Enemy extends Character {
-    constructor(name, src, hp, money, xp) {
-        super(name, false, src, hp, 10, true, money, xp);
+    constructor(name, src, hp, money, xp, power) {
+        super(name, false, src, hp, power, true, money, xp);
     }
 }
 
