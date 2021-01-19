@@ -144,34 +144,91 @@ export function moveToAnotherLocation(row, column) {
 
     let change = (x, y) => {
         if (isTown) {
+            let coords = {
+                X: 0,
+                Y: 0
+            }; // find the town
+            town.map.forEach((part, Index) => {
+                part.forEach((obj, index) => {
+                    if (obj instanceof Town) {
+                        coords.X = Index;
+                        coords.Y = index;
+                        return;
+                    }
+                });
+            });
 
+            variables.Map.map[variables.X][variables.Y] = variables.currentPlace;
+
+            if (row < 0) {
+                variables.X = coords.X - 1;
+                variables.Y = coords.Y;
+            }
+
+            if (row === variables.Map.map.length) {
+                variables.X = coords.X + 1;
+                variables.Y = coords.Y;
+            }
+
+            if (column < 0) {
+                variables.X = coords.X;
+                variables.Y = coords.Y - 1;
+            }
+
+            if (column === variables.Map.map.length) {
+                variables.X = coords.X;
+                variables.Y = coords.Y + 1;
+            }
+
+            variables.Map = town;
         }
         else {
             variables.Map.map[variables.X][variables.Y] = variables.currentPlace;
             variables.Map = Whole_Map[x][y];
-            True = true;
         }
+
+        True = true;
     };
 
     if (row < 0) {
         change(variables.Map.coords.x - 1,
             variables.Map.coords.y);
-        variables.X = variables.Map.map.length - 1;
+        if (isTown) {
+            isTown = false;
+        }
+        else {
+            variables.X = variables.Map.map.length - 1;
+        }
     }
     if (row === variables.Map.map.length) {
         change(variables.Map.coords.x + 1,
             variables.Map.coords.y);
-        variables.X = 0;
+        if (isTown) {
+            isTown = false;
+        }
+        else {
+            variables.X = 0;
+        }
     }
     if (column < 0) {
         change(variables.Map.coords.x,
             variables.Map.coords.y - 1);
-        variables.Y = variables.Map.map.length - 1;
+        if (isTown) {
+            isTown = false;
+        }
+        else {
+            variables.Y = variables.Map.map.length - 1;
+        }
     }
     if (column === variables.Map.map.length) {
         change(variables.Map.coords.x,
             variables.Map.coords.y + 1);
-        variables.Y = 0;
+        if (isTown) {
+            isTown = false;
+        }
+        else {
+            variables.Y = 0;
+        }
     }
 
     if (True) {
@@ -183,7 +240,7 @@ export function moveToAnotherLocation(row, column) {
 }
 
 export function isCity(x, y) {
-    if ((variables.Map.map[x] !== undefined && variables.Map.map[x][y] !== undefined) && variables.Map.map[x][y] instanceof Town) {
+    if ((0 <= x && x < variables.Map.map.length) && (0 <= y && y < variables.Map.map.length) && variables.Map.map[x][y] instanceof Town) {
         variables.Map.map[variables.X][variables.Y] = variables.currentPlace;
 
         if (y > variables.Y) { // if a player came from the left side
@@ -205,6 +262,8 @@ export function isCity(x, y) {
             variables.X = variables.Map.map.length - 1;
             variables.Y = Math.floor(city.map.length / 2);
         }
+
+        variables.currentPlace = city.map[variables.X][variables.Y];
 
         paintMap(city);
 
