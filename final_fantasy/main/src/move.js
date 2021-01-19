@@ -37,29 +37,31 @@ function replace(row, column) {
             variables.Map.map[variables.X][variables.Y] = helpCell;
             variables.X = row;
             variables.Y = column;
+            paintMap();
         }
+
+        /*if (isFight()) {
+            let fightWrap = document.createElement('div');
+            fightWrap.classList.add('fight-text-wrap', 'appearance');
+            fightWrap.id = 'fightName';
+
+            let fightText = document.createElement('span');
+            fightText.textContent = 'FIGHT!!!';
+            fightText.classList.add('fight-text');
+
+            fightWrap.appendChild(fightText);
+
+            document.body.appendChild(fightWrap);
+
+            document.onkeydown = null;
+
+            setTimeout(() => {
+                document.getElementById('fightName').remove();
+                createFight();
+            }, 3000);
+        }*/
     }
-
-    paintMap();
-
-    if (isFight()) {
-        let fightWrap = document.createElement('div');
-        fightWrap.classList.add('fight-text-wrap', 'appearance');
-        fightWrap.id = 'fightName';
-
-        let fightText = document.createElement('span');
-        fightText.textContent = 'FIGHT!!!';
-        fightText.classList.add('fight-text');
-
-        fightWrap.appendChild(fightText);
-
-        document.body.appendChild(fightWrap);
-
-        document.onkeydown = null;
-
-        setTimeout(() => {
-            document.getElementById('fightName').remove();
-            createFight();
-        }, 3000);
+    else {
+        paintMap();
     }
 }

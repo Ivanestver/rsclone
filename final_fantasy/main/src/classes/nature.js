@@ -76,3 +76,9 @@ export class Town extends Object {
         super(name, true, `MapObjects/${src}`);
     }
 }
+
+export class Wall extends Object {
+    constructor(name, src) {
+        super(name, false, `MapObjects/${src}`);
+    }
+}

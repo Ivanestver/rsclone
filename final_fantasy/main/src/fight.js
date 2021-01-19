@@ -395,6 +395,10 @@ function ApplyHelp() {
 }
 
 export function isFight() {
+    if (variables.Map.enemies.length === 0) {
+        return false;
+    }
+
     let number = Math.floor(Math.random() * 9);
     if (number === 0) {
         return true;
