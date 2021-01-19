@@ -40,7 +40,7 @@ function replace(row, column) {
             paintMap();
         }
 
-        /*if (isFight()) {
+        if (isFight()) {
             let fightWrap = document.createElement('div');
             fightWrap.classList.add('fight-text-wrap', 'appearance');
             fightWrap.id = 'fightName';
@@ -59,7 +59,7 @@ function replace(row, column) {
                 document.getElementById('fightName').remove();
                 createFight();
             }, 3000);
-        }*/
+        }
     }
     else {
         paintMap();
