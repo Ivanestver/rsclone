@@ -1,7 +1,7 @@
 import { paintMap } from "../main";
 import { variables } from "../variables";
 import { DarkKnight, Enemy, Hero } from "./characters";
-import { Bridge, Grass, Mountain, Town, Tree, Water, Wall } from "./nature";
+import { Bridge, Grass, Mountain, Town, Tree, Water, Wall, Village } from "./nature";
 
 var isTown = false;
 
@@ -65,12 +65,12 @@ export var forrest = new Map('Forrest',
     [new Enemy('Terrible Wolf', 'Wolf.png', 120, 20, 25, 25)]
 );
 
-export var village = new Map('Village',
+export var field = new Map('Village',
     [
         [new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png')],
         [new Tree('Tree', 'Tree.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png')],
         [new Tree('Tree', 'Tree.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Water('River', 'Water.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png')],
-        [new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Town('Village', 'Village.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png')],
+        [new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Village('Village', 'Village.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png')],
         [new Tree('Tree', 'Tree.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png')],
         [new Tree('Tree', 'Tree.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png')],
         [new Tree('Tree', 'Tree.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Mountain('Mountain', 'Mountain.png')],
@@ -129,8 +129,24 @@ export var city = new Map('Big City',
     []
 );
 
+export var village = new Map('Village',
+    [
+        [new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png')],
+        [new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png')],
+        [new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png')],
+        [new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png')],
+        [new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png')],
+        [new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png')],
+        [new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png')],
+        [new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png')],
+        [new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png')]
+    ],
+    { x: 1, y: 2 },
+    []
+);
+
 export var Whole_Map = [
-    [river, forrest, village],
+    [river, forrest, field],
     [bigLake, town, littleLake]
 ];
 
@@ -148,9 +164,10 @@ export function moveToAnotherLocation(row, column) {
                 X: 0,
                 Y: 0
             }; // find the town
-            town.map.forEach((part, Index) => {
+            let location = variables.Map === city ? town : field;
+            location.map.forEach((part, Index) => {
                 part.forEach((obj, index) => {
-                    if (obj instanceof Town) {
+                    if (obj instanceof Town || obj instanceof Village) {
                         coords.X = Index;
                         coords.Y = index;
                         return;
@@ -180,7 +197,7 @@ export function moveToAnotherLocation(row, column) {
                 variables.Y = coords.Y + 1;
             }
 
-            variables.Map = town;
+            variables.Map = location;
         }
         else {
             variables.Map.map[variables.X][variables.Y] = variables.currentPlace;
@@ -240,32 +257,32 @@ export function moveToAnotherLocation(row, column) {
 }
 
 export function isCity(x, y) {
-    if ((0 <= x && x < variables.Map.map.length) && (0 <= y && y < variables.Map.map.length) && variables.Map.map[x][y] instanceof Town) {
+    if ((0 <= x && x < variables.Map.map.length) && (0 <= y && y < variables.Map.map.length)
+        && (variables.Map.map[x][y] instanceof Town || variables.Map.map[x][y] instanceof Village)) {
         variables.Map.map[variables.X][variables.Y] = variables.currentPlace;
+        let location = variables.Map.map[x][y] instanceof Town ? city : village;
 
         if (y > variables.Y) { // if a player came from the left side
-            variables.X = Math.floor(city.map.length / 2);
+            variables.X = Math.floor(location.map.length / 2);
+            //variables.X = Math.floor(city.map.length / 2);
             variables.Y = 0;
         }
-        
-        if (y < variables.Y) { // if a player came from the right side
-            variables.X = Math.floor(city.map.length / 2);
+        else if (y < variables.Y) { // if a player came from the right side
+            variables.X = Math.floor(location.map.length / 2);
             variables.Y = variables.Map.map.length - 1;
         }
-        
-        if (x > variables.X) { // if a player came from above
+        else if (x > variables.X) { // if a player came from above
             variables.X = 0;
-            variables.Y = Math.floor(city.map.length / 2);
+            variables.Y = Math.floor(location.map.length / 2);
         }
-        
-        if (x < variables.X) { // if a player came from below
+        else if (x < variables.X) { // if a player came from below
             variables.X = variables.Map.map.length - 1;
-            variables.Y = Math.floor(city.map.length / 2);
+            variables.Y = Math.floor(location.map.length / 2);
         }
 
-        variables.currentPlace = city.map[variables.X][variables.Y];
+        variables.currentPlace = location.map[variables.X][variables.Y];
 
-        paintMap(city);
+        paintMap(variables.Map.map[x][y] instanceof Town ? city : village);
 
         return true;
     }

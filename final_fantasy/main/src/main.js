@@ -4,7 +4,7 @@ import { variables } from "./variables";
 import { pauseMenu } from "./PauseMenu";
 import { Hero } from "./classes/characters";
 import { trading } from "./trading";
-import { river, bigLake, forrest, village, town, littleLake, city } from "./classes/maps";
+import { river, bigLake, forrest, field, town, littleLake, city } from "./classes/maps";
 
 const { Mountain, Grass } = require("./classes/nature");
 var main = document.getElementsByClassName('main')[0];
