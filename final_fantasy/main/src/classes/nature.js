@@ -13,6 +13,19 @@ export class Mountain extends Object {
     }
 }
 
+export class Road extends Object {
+    constructor(name, src) {
+        super(name, true, `MapObjects/${src}`);
+    }
+
+    copy(obj) {
+        obj = new Road();
+        obj.Name = this.Name;
+        obj.IsWalkable = this.IsWalkable;
+        obj.Src = this.Src;
+    }
+}
+
 export class Hill extends Object {
     constructor(name, src) {
         super(name, true, `MapObjects/${src}`);
@@ -84,6 +97,12 @@ export class Village extends Object {
 }
 
 export class Wall extends Object {
+    constructor(name, src) {
+        super(name, false, `MapObjects/${src}`);
+    }
+}
+
+export class House extends Object {
     constructor(name, src) {
         super(name, false, `MapObjects/${src}`);
     }
