@@ -1,19 +1,19 @@
-import { Trader, suppliesTrader, weaponsTrader } from "./classes/trader";
+import { Trader } from "./classes/trader";
 import { input } from "./main";
 import { variables } from "./variables";
 import { Food, Drink, foods, drinks } from './classes/supplies'
 import { Weapon, weapons } from "./classes/weapons";
 import { armories, Armory } from "./classes/armories";
 
-var trader = suppliesTrader;
+var trader = null;
 
-export function trading() {
-    defineATrader();
+export function trading(_trader) {
+    trader = _trader;
     createTrading();
     document.onkeydown = defineCategory;
 }
 
-function defineATrader() {
+/*function defineATrader() {
     if (variables.Map[variables.X][variables.Y - 1] instanceof Trader) { // from the left side
         trader = variables.Map[variables.X][variables.Y - 1];
     }
@@ -26,8 +26,7 @@ function defineATrader() {
     else if (variables.Map[variables.X + 1][variables.Y] instanceof Trader) { // from below
         trader = variables.Map[variables.X + 1][variables.Y];
     }
-}
-
+}*/
 function createTrading() {
     let wrap = document.createElement('div');
     wrap.id = 'trade';

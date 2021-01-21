@@ -103,7 +103,8 @@ export class Wall extends Object {
 }
 
 export class House extends Object {
-    constructor(name, src) {
+    constructor(name, src, trader) {
         super(name, false, `MapObjects/${src}`);
+        this.trader = trader;
     }
 }

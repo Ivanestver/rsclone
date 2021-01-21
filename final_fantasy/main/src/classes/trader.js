@@ -1,6 +1,3 @@
-import { drinks, foods } from './supplies';
-import { weapons } from './weapons'; 
-
 export class Trader {
     constructor(name, markup, ...items) {
         this.name = name;
@@ -26,5 +23,3 @@ export class Trader {
     }
 }
 
-export var suppliesTrader = new Trader('Supplies', 0.2, [foods['apple'], foods['banana'], drinks['cola']]);
-export var weaponsTrader = new Trader("Weapons", 0.2, weapons);

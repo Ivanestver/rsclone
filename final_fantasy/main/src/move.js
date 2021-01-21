@@ -1,7 +1,9 @@
 import { moveToAnotherLocation } from "./classes/maps";
 import { createFight, isFight } from "./fight";
 import { paintMap } from "./main";
+import { trading } from "./trading";
 import { variables } from "./variables";
+import { House } from './classes/nature'
 
 export function move(event) {
     switch (event.key) {
@@ -38,6 +40,11 @@ function replace(row, column) {
             variables.X = row;
             variables.Y = column;
             paintMap();
+        }
+        else {
+            if (variables.Map.map[row][column] instanceof House) {
+                trading(variables.Map.map[row][column].trader);
+            }
         }
 
         /*if (isFight()) {

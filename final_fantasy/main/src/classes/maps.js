@@ -1,9 +1,21 @@
-import { paintMap } from "../main";
+ import { paintMap } from "../main";
 import { variables } from "../variables";
+import { armories, clothes, leatherArmory } from "./armories";
 import { DarkKnight, Enemy, Hero } from "./characters";
 import { Bridge, Grass, Mountain, Town, Tree, Water, Wall, Village, Road, House } from "./nature";
+import { foods } from "./supplies";
+import { Trader } from "./trader";
+import { IronSword, weapons, WoodenAxe, WoodenSword, IronAxe } from "./weapons";
 
 var isTown = false;
+
+var armoriesVillageTrader = new Trader('Armories', 0.2, [leatherArmory]);
+var weaponsVillageTrader = new Trader('Weapons', 0.2, [WoodenSword, WoodenAxe]);
+var suppliesVillageTrader = new Trader('Supplies', 0.2, [foods['apple'], foods['bread'], foods['fish']]);
+
+var armoriesCityTrader = new Trader('Armories', 0.2, [leatherArmory, clothes]);
+var weaponsCityTrader = new Trader('Weapons', 0.2, [WoodenSword, WoodenAxe, IronSword, IronAxe]);
+var suppliesCityTrader = new Trader('Supplies', 0.2, [foods['apple'], foods['bread'], foods['fish'], foods['meat']]);
 
 class Map {
     constructor(name, map, coords, enemies) {
@@ -118,9 +130,9 @@ export var city = new Map('Big City',
         [new Wall('City Wall', 'Wall.png'), new Wall('City Wall', 'Wall.png'), new Wall('City Wall', 'Wall.png'), new Wall('City Wall', 'Wall.png'), new Road('City Road', 'CityRoad.png'), new Wall('City Wall', 'Wall.png'), new Wall('City Wall', 'Wall.png'), new Wall('City Wall', 'Wall.png'), new Wall('City Wall', 'Wall.png')],
         [new Wall('City Wall', 'Wall.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Road('City Road', 'CityRoad.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Wall('City Wall', 'Wall.png')],
         [new Wall('City Wall', 'Wall.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Road('City Road', 'CityRoad.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Wall('City Wall', 'Wall.png')],
-        [new Wall('City Wall', 'Wall.png'), new Grass('Grass', 'Grass.png'), new House('Weapons', 'Weapons.png'), new Grass('Grass', 'Grass.png'), new Road('City Road', 'CityRoad.png'), new Grass('Grass', 'Grass.png'), new House('Supplies', 'Supplies.png'), new Grass('Grass', 'Grass.png'), new Wall('City Wall', 'Wall.png')],
+        [new Wall('City Wall', 'Wall.png'), new Grass('Grass', 'Grass.png'), new House('Weapons', 'Weapons.png', weaponsCityTrader), new Grass('Grass', 'Grass.png'), new Road('City Road', 'CityRoad.png'), new Grass('Grass', 'Grass.png'), new House('Supplies', 'Supplies.png', suppliesCityTrader), new Grass('Grass', 'Grass.png'), new Wall('City Wall', 'Wall.png')],
         [new Road('City Road', 'CityRoadRotated.png'), new Road('City Road', 'CityRoadRotated.png'), new Road('City Road', 'CityRoadRotated.png'), new Road('City Road', 'CityRoadRotated.png'), new Road('Crossroad', 'Crossroad.png'), new Road('City Road', 'CityRoadRotated.png'), new Road('City Road', 'CityRoadRotated.png'), new Road('City Road', 'CityRoadRotated.png'), new Road('City Road', 'CityRoadRotated.png')],
-        [new Wall('City Wall', 'Wall.png'), new Grass('Grass', 'Grass.png'), new House('Armory', 'Armories.png'), new Grass('Grass', 'Grass.png'), new Road('City Road', 'CityRoad.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Wall('City Wall', 'Wall.png')],
+        [new Wall('City Wall', 'Wall.png'), new Grass('Grass', 'Grass.png'), new House('Armory', 'Armories.png', armoriesCityTrader), new Grass('Grass', 'Grass.png'), new Road('City Road', 'CityRoad.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Wall('City Wall', 'Wall.png')],
         [new Wall('City Wall', 'Wall.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Road('City Road', 'CityRoad.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Wall('City Wall', 'Wall.png')],
         [new Wall('City Wall', 'Wall.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Road('City Road', 'CityRoad.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Wall('City Wall', 'Wall.png')],
         [new Wall('City Wall', 'Wall.png'), new Wall('City Wall', 'Wall.png'), new Wall('City Wall', 'Wall.png'), new Wall('City Wall', 'Wall.png'), new Road('City Road', 'CityRoad.png'), new Wall('City Wall', 'Wall.png'), new Wall('City Wall', 'Wall.png'), new Wall('City Wall', 'Wall.png'), new Wall('City Wall', 'Wall.png')]
@@ -133,12 +145,12 @@ export var village = new Map('Village',
     [
         [new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Road('Village Road', 'SandRoad.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png')],
         [new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Road('Village Road', 'SandRoad.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png')],
-        [new Road('Village Road', 'SandRoadRotated.png'), new Road('Village Road', 'SandRoadRotated.png'), new Road('Village Road', 'SandRoadRotated.png'), new Road('Village Road', 'SandRoadRotated.png'), new House('Weapons', 'Weapons.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png')],
+        [new Road('Village Road', 'SandRoadRotated.png'), new Road('Village Road', 'SandRoadRotated.png'), new Road('Village Road', 'SandRoadRotated.png'), new Road('Village Road', 'SandRoadRotated.png'), new House('Weapons', 'Weapons.png', weaponsVillageTrader), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png')],
         [new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Road('Village Road', 'SandRoad.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png')],
         [new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Road('Village Road', 'SandRoad.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png')],
-        [new Grass('Grass', 'Grass.png'), new House('Armory', 'Armories.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Road('Village Road', 'SandRoad.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png')],
+        [new Grass('Grass', 'Grass.png'), new House('Armory', 'Armories.png', armoriesVillageTrader), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Road('Village Road', 'SandRoad.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png')],
         [new Road('Village Road', 'SandRoadRotated.png'), new Road('Village Road', 'SandRoadRotated.png'), new Road('Village Road', 'SandRoadRotated.png'), new Road('Village Road', 'SandRoadRotated.png'), new Road('Village Road', 'SandRoadRotated.png'), new Road('Village Road', 'SandRoadRotated.png'), new Road('Village Road', 'SandRoadRotated.png'), new Road('Village Road', 'SandRoadRotated.png'), new Road('Village Road', 'SandRoadRotated.png')],
-        [new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new House('Supplies', 'Supplies.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png')],
+        [new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new House('Supplies', 'Supplies.png', suppliesVillageTrader), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png')],
         [new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Road('Village Road', 'SandRoad.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png')]
     ],
     {},
@@ -264,7 +276,6 @@ export function isCity(x, y) {
 
         if (y > variables.Y) { // if a player came from the left side
             variables.X = Math.floor(location.map.length / 2);
-            //variables.X = Math.floor(city.map.length / 2);
             variables.Y = 0;
         }
         else if (y < variables.Y) { // if a player came from the right side
