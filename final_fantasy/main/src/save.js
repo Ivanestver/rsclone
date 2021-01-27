@@ -90,6 +90,7 @@ function save() {
     let saveObj = {
         date: `${date.getDate()}.${date.getMonth() < 9 ? '0' : ''}${date.getMonth() + 1}.${date.getFullYear()}`,
         time: `${date.getHours()}:${date.getMinutes()}`,
+        task: variables.Hero.task.id,
         hero: variables.Hero
     }
 

@@ -1,4 +1,3 @@
-import { DarkKnight, Hero } from "./classes/characters";
 import { town } from "./classes/maps";
 import { Grass } from "./classes/nature";
 
@@ -8,14 +7,14 @@ class Variables {
         this.Arena = {
             map: []
         };
-        this.mapSize = 8;
+        this.mapSize = 9;
         this.imgWidth = 320;
         this.hero = null;
 
         // Coordinates of a hero
         this.X = 1;
         this.Y = 3;
-        this.enemyCoordinates = { x: 3, y: 6 };
+        this.enemyCoordinates = { x: 4, y: 7 };
 
         this.currentPlace = new Grass('Grass', 'Grass.png'); // where a hero is staying. It defines what type of ground is under him.
     }
@@ -27,6 +26,8 @@ class Variables {
     set Hero(value) {
         this.hero = value;
 
+        this.Arena.map = [];
+
         for (let i = 0; i < this.mapSize; i++) {
             this.Arena.map.push([]);
             for (let j = 0; j < this.mapSize; j++) {
@@ -35,7 +36,7 @@ class Variables {
                     continue;
                 }
 
-                if (i === 3 && j === 1) {
+                if (i === 4 && j === 2) {
                     this.Arena.map[i].push(this.Hero);
                     continue;
                 }
@@ -46,4 +47,8 @@ class Variables {
     }
 }
 
-export var variables = new Variables();
+export var variables;
+
+document.addEventListener('DOMContentLoaded', () => {
+    variables = new Variables();
+});

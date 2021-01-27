@@ -26,7 +26,10 @@ export function paintMap(Map = variables.Map) {
     if (Map != variables.Map) {
         variables.Map = Map;
     }
-    variables.Map.map[variables.X][variables.Y] = variables.Hero;
+
+    if (Map !== variables.Arena) {
+        variables.Map.map[variables.X][variables.Y] = variables.Hero;
+    }
 
     for (let i = 0; i < Map.map.length; i++) {
         for (let j = 0; j < Map.map.length; j++) {

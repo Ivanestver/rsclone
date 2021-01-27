@@ -345,3 +345,23 @@ table tr td {
 
     font-size: 3rem;
 }
+
+.imgs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 25vw;
+    height: 50vh;
+}
+
+.complete {
+    position: absolute;
+    left: calc((100vw - 16vw)/2);
+    top: 10vh;
+    width: 16vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

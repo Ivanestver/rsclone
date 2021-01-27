@@ -4,6 +4,9 @@ import { paintMap } from "./main";
 import { trading } from "./trading";
 import { variables } from "./variables";
 import { House } from './classes/nature'
+import { Character } from "./classes/characters";
+import { dialog } from "./dialog";
+import { ids } from "./classes/task";
 
 export function move(event) {
     switch (event.key) {
@@ -31,6 +34,7 @@ export function move(event) {
 
 // replaces a cell with a hero
 function replace(row, column) {
+
     if (!moveToAnotherLocation(row, column)) {
         if (variables.Map.map[row][column].IsWalkable) {
             let helpCell = variables.currentPlace;
@@ -40,14 +44,21 @@ function replace(row, column) {
             variables.X = row;
             variables.Y = column;
             paintMap();
+            if (variables.Hero.task !== null && typeof variables.Hero.task.check === 'function') {
+                variables.Hero.task.check(ids['carry']);
+            }
         }
         else {
             if (variables.Map.map[row][column] instanceof House) {
                 trading(variables.Map.map[row][column].trader);
             }
+
+            if (variables.Map.map[row][column] instanceof Character && !variables.Map.map[row][column].isEnemy) {
+                dialog(variables.Map.map[row][column]);
+            }
         }
 
-        /*if (isFight()) {
+        if (isFight()) {
             let fightWrap = document.createElement('div');
             fightWrap.classList.add('fight-text-wrap', 'appearance');
             fightWrap.id = 'fightName';
@@ -66,7 +77,7 @@ function replace(row, column) {
                 document.getElementById('fightName').remove();
                 createFight();
             }, 3000);
-        }*/
+        }
     }
     else {
         paintMap();

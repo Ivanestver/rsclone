@@ -2,6 +2,7 @@ import { initMap, paintMap } from "./main";
 import { variables } from "./variables";
 import { foods, drinks } from "./classes/supplies";
 import { checkLevel } from "./classes/level";
+import { ids, tasks } from "./classes/task";
 
 var main = document.getElementsByClassName('main')[0];
 var heroHealth;
@@ -325,6 +326,17 @@ function win() {
 
     setTimeout(() => {
         initMap();
+        if (variables.Hero.task.check === undefined) {
+            let a = JSON.parse(localStorage.getItem('ff'));
+            variables.Hero.task.check = function (id) {
+                tasks[a.task].check(id);
+            }
+
+            variables.Hero.task.add = function () {
+                tasks[a.task].add();
+            };
+        }
+        variables.Hero.task.check(ids['kill']);
     }, delay);
 }
 

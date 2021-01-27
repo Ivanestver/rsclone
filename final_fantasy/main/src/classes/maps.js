@@ -1,9 +1,10 @@
- import { paintMap } from "../main";
+ import { input, paintMap } from "../main";
 import { variables } from "../variables";
 import { armories, clothes, leatherArmory } from "./armories";
-import { DarkKnight, Enemy, Hero } from "./characters";
+import { Character, DarkKnight, Enemy, Hero } from "./characters";
 import { Bridge, Grass, Mountain, Town, Tree, Water, Wall, Village, Road, House } from "./nature";
 import { foods } from "./supplies";
+import { killSomeone } from "./task";
 import { Trader } from "./trader";
 import { IronSword, weapons, WoodenAxe, WoodenSword, IronAxe } from "./weapons";
 
@@ -29,6 +30,20 @@ class Map {
     }
 }
 
+export var enemies = {
+    'Drowned': new Enemy('Drowned', 'Drowned.png', 150, 45, 50, 30),
+    'Dark Knight': new Enemy('Dark Knight', 'DarkKnight.png', 100, 10, 10, 10),
+    'Crazy Villager': new Enemy('Crazy Villager', 'Villager.png', 170, 30, 40, 25),
+    'Terrible Wolf': new Enemy('Terrible Wolf', 'Wolf.png', 120, 20, 25, 25),
+    'Horrible Crab': new Enemy('Horrible Crab', 'Crab.png', 100, 15, 15, 15),
+    'Scary Fish': new Enemy('Scary Fish', 'Fish.png', 200, 50, 55, 60)
+};
+
+export var npc = {
+    'Old Man': new Character('Old man', false, 'Old.png', 10, 10, false, 50, 50, killSomeone.desc('Great! You can find them walking near the big lake',
+                                                                                                   'It\'s a pity!', 20, 50)),
+};    
+
 export var river = new Map('River',
     [
         [new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png')],
@@ -42,7 +57,7 @@ export var river = new Map('River',
         [new Mountain('Mountain', 'Mountain.png'), new Water('River', 'Water.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png')]
     ],
     { x: 0, y: 0 },
-    [new Enemy('Scary Fish', 'Fish.png', 200, 50, 55, 60)]
+    [enemies['Scary Fish']]
 );
 
 export var bigLake = new Map('Big Lake',
@@ -58,7 +73,7 @@ export var bigLake = new Map('Big Lake',
         [new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png')]
     ],
     { x: 1, y: 0 },
-    [new Enemy('Horrible Crab', 'Crab.png', 100, 15, 15, 15)]
+    [enemies['Horrible Crab']]
 );
 
 export var forrest = new Map('Forrest',
@@ -74,7 +89,7 @@ export var forrest = new Map('Forrest',
         [new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png')]
     ],
     { x: 0, y: 1 },
-    [new Enemy('Terrible Wolf', 'Wolf.png', 120, 20, 25, 25)]
+    [enemies['Terrible Wolf']]
 );
 
 export var field = new Map('Village',
@@ -90,7 +105,7 @@ export var field = new Map('Village',
         [new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Grass('Grass', 'Grass.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Mountain('Mountain', 'Mountain.png')]
     ],
     { x: 0, y: 2 },
-    [new Enemy('Crazy Villager', 'Villager.png', 170, 30, 40, 25)]
+    [enemies['Crazy Villager']]
 );
 
 export var town = new Map('Town',
@@ -106,7 +121,7 @@ export var town = new Map('Town',
         [new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png')]
     ],
     { x: 1, y: 1 },
-    [new Enemy('Dark Knight', 'DarkKnight.png', 100, 10, 10, 10)]
+    [enemies['Dark Knight']]
 );
 
 export var littleLake = new Map('Little Lake',
@@ -122,7 +137,7 @@ export var littleLake = new Map('Little Lake',
         [new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png')]
     ],
     { x: 1, y: 2 },
-    [new Enemy('Drowned', 'Drowned.png', 150, 45, 50, 30)]
+    [enemies['Drowned']]
 );
 
 export var city = new Map('Big City',
@@ -132,7 +147,7 @@ export var city = new Map('Big City',
         [new Wall('City Wall', 'Wall.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Road('City Road', 'CityRoad.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Wall('City Wall', 'Wall.png')],
         [new Wall('City Wall', 'Wall.png'), new Grass('Grass', 'Grass.png'), new House('Weapons', 'Weapons.png', weaponsCityTrader), new Grass('Grass', 'Grass.png'), new Road('City Road', 'CityRoad.png'), new Grass('Grass', 'Grass.png'), new House('Supplies', 'Supplies.png', suppliesCityTrader), new Grass('Grass', 'Grass.png'), new Wall('City Wall', 'Wall.png')],
         [new Road('City Road', 'CityRoadRotated.png'), new Road('City Road', 'CityRoadRotated.png'), new Road('City Road', 'CityRoadRotated.png'), new Road('City Road', 'CityRoadRotated.png'), new Road('Crossroad', 'Crossroad.png'), new Road('City Road', 'CityRoadRotated.png'), new Road('City Road', 'CityRoadRotated.png'), new Road('City Road', 'CityRoadRotated.png'), new Road('City Road', 'CityRoadRotated.png')],
-        [new Wall('City Wall', 'Wall.png'), new Grass('Grass', 'Grass.png'), new House('Armory', 'Armories.png', armoriesCityTrader), new Grass('Grass', 'Grass.png'), new Road('City Road', 'CityRoad.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Wall('City Wall', 'Wall.png')],
+        [new Wall('City Wall', 'Wall.png'), new Grass('Grass', 'Grass.png'), new House('Armory', 'Armories.png', armoriesCityTrader), new Grass('Grass', 'Grass.png'), new Road('City Road', 'CityRoad.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), npc['Old Man'], new Wall('City Wall', 'Wall.png')],
         [new Wall('City Wall', 'Wall.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Road('City Road', 'CityRoad.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Wall('City Wall', 'Wall.png')],
         [new Wall('City Wall', 'Wall.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Road('City Road', 'CityRoad.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Wall('City Wall', 'Wall.png')],
         [new Wall('City Wall', 'Wall.png'), new Wall('City Wall', 'Wall.png'), new Wall('City Wall', 'Wall.png'), new Wall('City Wall', 'Wall.png'), new Road('City Road', 'CityRoad.png'), new Wall('City Wall', 'Wall.png'), new Wall('City Wall', 'Wall.png'), new Wall('City Wall', 'Wall.png'), new Wall('City Wall', 'Wall.png')]

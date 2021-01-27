@@ -2,16 +2,19 @@ import { Armory, clothes, leatherArmory } from "./armories";
 import { levels } from "./level";
 import { cure, fire, freezing, lightning, powerman, getMP, magics } from "./magic";
 import { Object } from "./object";
+//import { Task, TaskProgress } from "./task";
 import { IronAxe, Weapon, WoodenSword } from "./weapons";
 
 export class Character extends Object {
-    constructor(name, isWalkable, src, hp, power, isEnemy, money, xp) {
+    constructor(name, isWalkable, src, hp, power, isEnemy, money, xp, dialogFlow) {
         super(name, isWalkable, `Characters/${src}`);
         this.hp = hp;
         this.power = power;
         this.isEnemy = isEnemy;
         this.money = money;
         this.xp = xp;
+
+        this.dialogFlow = dialogFlow; // it is a function for dialog. It defines all logic of it
     }
 
     get Hp() {
@@ -39,14 +42,14 @@ export class Character extends Object {
 export class Hero extends Character {
     
     constructor(...options) {
-        if (options.length > 1) {
+        if (options.length > 2) {
             super(options[0], true, options[4], options[1], options[2], false, 0, 0);
         }
         else {
             super(options[0].name, true, options[0].src, options[0].hp, options[0].power, false, options[0].money, options[0].xp);
         }
 
-        if (options.length > 1) {
+        if (options.length > 2) {
             this.inventory = {
                 weapon: WoodenSword,
                 armory: leatherArmory,
@@ -74,6 +77,8 @@ export class Hero extends Character {
 
             this.maxHp = levels[1].maxHp;
             this.maxMp = levels[1].maxMp;
+
+            this.task = null;
         }
         else {
             this.inventory = options[0].inventory;
@@ -95,6 +100,14 @@ export class Hero extends Character {
 
             this.maxHp = levels[this.level].maxHp;
             this.maxMp = levels[this.level].maxMp;
+
+            //this.task = new Task(options[0].task.name, options[0].task.desk, options[0].task.check);
+            this.task = options[0].task;
+            //this.task.check = tasks[options[1]].check;
+            //this.task.toDo = new TaskProgress(options[0].task.complete, options[0].task.enemyName, options[0].task.add, options[0].task.completed, options[0].task.xp, options[0].task.money);
+
+            this.task.check = null;
+            this.task.add = null;
         }
     }
 

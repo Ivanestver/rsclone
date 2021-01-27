@@ -2,6 +2,7 @@ import { Hero } from "./classes/characters";
 import { initMap } from "./main";
 import { pauseMenu } from "./PauseMenu";
 import { variables } from "./variables";
+import { tasks } from "./classes/task";
 
 var data = null;
 
@@ -76,7 +77,7 @@ function input(event) {
 
     if (event.key === 'Enter') {
         data.hero.src = data.hero.src.split('/')[4];
-        variables.Hero = new Hero(data.hero);
+        variables.Hero = new Hero(data.hero, data.task);
         initMap();
         document.getElementById('load').remove();
         document.getElementById('pause').remove();
