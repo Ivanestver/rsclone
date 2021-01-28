@@ -155,12 +155,16 @@ function Enter(isWeapon) {
     place = isWeapon ? variables.Hero.inventory.weapons : variables.Hero.inventory.armories;
 
     let itemsWrap = document.createElement('div');
-    itemsWrap.classList.add('list-items-in-equip');
+    itemsWrap.classList.add('list-items-in-equip', 'appearance');
     itemsWrap.id = 'items';
 
-    place.forEach(item => {
+    place.forEach((item, index) => {
         let itemWrap = document.createElement('div');
-        itemWrap.classList.add('appearance', 'select');
+
+        if (index === 0) {
+            itemWrap.classList.add('select');
+        }
+
         itemWrap.style.width = '100%';
         itemWrap.style.display = 'flex';
         itemWrap.style.justifyContent = 'space-evenly';
@@ -191,14 +195,15 @@ function chooseAnItem(event) {
 
     let move = (down) => { // 0 - false, 1 - true;
         for (let i = 0; i < current.parentElement.children.length; i++) {
-            if (current.parentElement.children === current) {
+            if (current.parentElement.children[i] === current) {
                 let number = i + ((-1) ** down);
-                if (number < 0 || number === current.parentElement.children.length) {
+                if (number < 0 || number === current.parentElement.children[i].length) {
                     break;
                 }
 
                 current.parentElement.children[number].classList.add('select');
                 current.classList.remove('select');
+                break;
             }
         }
     };

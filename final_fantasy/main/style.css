@@ -242,6 +242,7 @@ main {
     left: calc(100vw - 23%);
     top: 21vh;
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
 }

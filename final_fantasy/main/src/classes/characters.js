@@ -64,7 +64,7 @@ export class Hero extends Character {
                     cola: 1
                 },
                 weapons: [IronAxe, Stick],
-                armories: [Clothes, LeatherArmory]
+                armories: [LeatherArmory]
             }
 
             this.addPower = 0;
