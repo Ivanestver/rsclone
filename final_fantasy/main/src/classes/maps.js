@@ -31,12 +31,30 @@ class Map {
 }
 
 export var enemies = {
-    'Drowned': new Enemy('Drowned', 'Drowned.png', 150, 45, 50, 30),
-    'Dark Knight': new Enemy('Dark Knight', 'DarkKnight.png', 100, 10, 10, 10),
-    'Crazy Villager': new Enemy('Crazy Villager', 'Villager.png', 170, 30, 40, 25),
+    // river
+    'Scary Fish': new Enemy('Scary Fish', 'Fish.png', 200, 50, 55, 60),
+    'Zombie': new Enemy('Zombie', 'Zombie.png', 200, 50, 55, 60),
+    'Scorpion': new Enemy('Scorpion', 'Scorpion.png', 200, 50, 55, 60),
+    // forest
     'Terrible Wolf': new Enemy('Terrible Wolf', 'Wolf.png', 120, 20, 25, 25),
+    'Troll': new Enemy('Troll', 'Troll.png', 120, 20, 25, 25),
+    'Living Tree': new Enemy('Living Tree', 'LivingTree.png', 120, 20, 25, 25),
+    // field
+    'Crazy Villager': new Enemy('Crazy Villager', 'Villager.png', 170, 30, 40, 25),
+    'Hell Cow': new Enemy('Hell Cow', 'HellCow.png', 170, 30, 40, 25),
+    'Wasp': new Enemy('Wasp', 'Wasp.png', 170, 30, 40, 25),
+    // big lake
     'Horrible Crab': new Enemy('Horrible Crab', 'Crab.png', 100, 15, 15, 15),
-    'Scary Fish': new Enemy('Scary Fish', 'Fish.png', 200, 50, 55, 60)
+    'FishMan': new Enemy('FishMan', 'FishMan.png', 100, 15, 15, 15),
+    'Big Lake Monster': new Enemy('Big Lake Monster', 'LochNess.png', 100, 15, 15, 15),
+    // town
+    'Dark Knight': new Enemy('Dark Knight', 'DarkKnight.png', 100, 10, 10, 10),
+    'Robber': new Enemy('Robber', 'Robber.png', 100, 10, 10, 10),
+    'Goblin': new Enemy('Goblin', 'Goblin.png', 100, 10, 10, 10),
+    // small lake
+    'Drowned': new Enemy('Drowned', 'Drowned.png', 150, 45, 50, 30),
+    'Snake': new Enemy('Snake', 'Snake.png', 150, 45, 50, 30),
+    'Mermaid': new Enemy('Mermaid', 'Mermaid.png', 150, 45, 50, 30),
 };
 
 export var npc = {
@@ -57,7 +75,7 @@ export var river = new Map('River',
         [new Mountain('Mountain', 'Mountain.png'), new Water('River', 'Water.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Grass('Grass', 'Grass.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png')]
     ],
     { x: 0, y: 0 },
-    [enemies['Scary Fish']]
+    [enemies['Scary Fish'], enemies['Zombie'], enemies['Scorpion']]
 );
 
 export var bigLake = new Map('Big Lake',
@@ -73,7 +91,7 @@ export var bigLake = new Map('Big Lake',
         [new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png')]
     ],
     { x: 1, y: 0 },
-    [enemies['Horrible Crab']]
+    [enemies['Horrible Crab'], enemies['FishMan'], enemies['Big Lake Monster']]
 );
 
 export var forrest = new Map('Forrest',
@@ -89,7 +107,7 @@ export var forrest = new Map('Forrest',
         [new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png')]
     ],
     { x: 0, y: 1 },
-    [enemies['Terrible Wolf']]
+    [enemies['Terrible Wolf'], enemies['Troll'], enemies['Living Tree']]
 );
 
 export var field = new Map('Village',
@@ -105,7 +123,7 @@ export var field = new Map('Village',
         [new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Grass('Grass', 'Grass.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Tree('Tree', 'Tree.png'), new Mountain('Mountain', 'Mountain.png')]
     ],
     { x: 0, y: 2 },
-    [enemies['Crazy Villager']]
+    [enemies['Crazy Villager'], enemies['Hell Cow'], enemies['Wasp']]
 );
 
 export var town = new Map('Town',
@@ -121,7 +139,7 @@ export var town = new Map('Town',
         [new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png')]
     ],
     { x: 1, y: 1 },
-    [enemies['Dark Knight']]
+    [enemies['Dark Knight'], enemies['Robber'], enemies['Goblin']]
 );
 
 export var littleLake = new Map('Little Lake',
@@ -137,7 +155,7 @@ export var littleLake = new Map('Little Lake',
         [new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png'), new Mountain('Mountain', 'Mountain.png')]
     ],
     { x: 1, y: 2 },
-    [enemies['Drowned']]
+    [enemies['Drowned'], enemies['Snake'], enemies['Mermaid']]
 );
 
 export var city = new Map('Big City',
