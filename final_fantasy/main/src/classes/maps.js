@@ -1,6 +1,6 @@
  import { input, paintMap } from "../main";
 import { variables } from "../variables";
-import { armories, clothes, leatherArmory } from "./armories";
+import { armories, Clothes, LeatherArmory } from "./armories";
 import { Character, DarkKnight, Enemy, Hero } from "./characters";
 import { Bridge, Grass, Mountain, Town, Tree, Water, Wall, Village, Road, House } from "./nature";
 import { foods } from "./supplies";
@@ -10,11 +10,11 @@ import { IronSword, weapons, WoodenAxe, WoodenSword, IronAxe } from "./weapons";
 
 var isTown = false;
 
-var armoriesVillageTrader = new Trader('Armories', 0.2, [leatherArmory]);
+var armoriesVillageTrader = new Trader('Armories', 0.2, [LeatherArmory]);
 var weaponsVillageTrader = new Trader('Weapons', 0.2, [WoodenSword, WoodenAxe]);
 var suppliesVillageTrader = new Trader('Supplies', 0.2, [foods['apple'], foods['bread'], foods['fish']]);
 
-var armoriesCityTrader = new Trader('Armories', 0.2, [leatherArmory, clothes]);
+var armoriesCityTrader = new Trader('Armories', 0.2, [LeatherArmory, Clothes]);
 var weaponsCityTrader = new Trader('Weapons', 0.2, [WoodenSword, WoodenAxe, IronSword, IronAxe]);
 var suppliesCityTrader = new Trader('Supplies', 0.2, [foods['apple'], foods['bread'], foods['fish'], foods['meat']]);
 

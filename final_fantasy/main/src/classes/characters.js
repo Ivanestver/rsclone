@@ -1,9 +1,9 @@
-import { Armory, clothes, leatherArmory } from "./armories";
+import { Clothes, LeatherArmory } from "./armories";
 import { levels } from "./level";
 import { cure, fire, freezing, lightning, powerman, getMP, magics } from "./magic";
 import { Object } from "./object";
 //import { Task, TaskProgress } from "./task";
-import { IronAxe, Weapon, WoodenSword } from "./weapons";
+import { IronAxe, Stick, Weapon, WoodenSword } from "./weapons";
 
 export class Character extends Object {
     constructor(name, isWalkable, src, hp, power, isEnemy, money, xp, dialogFlow) {
@@ -52,7 +52,7 @@ export class Hero extends Character {
         if (options.length > 2) {
             this.inventory = {
                 weapon: WoodenSword,
-                armory: leatherArmory,
+                armory: Clothes,
                 food: {
                     apple: 1,
                     bread: 1,
@@ -63,8 +63,8 @@ export class Hero extends Character {
                     tea: 1,
                     cola: 1
                 },
-                weapons: [IronAxe],
-                armories: [clothes]
+                weapons: [IronAxe, Stick],
+                armories: [Clothes, LeatherArmory]
             }
 
             this.addPower = 0;
@@ -101,10 +101,7 @@ export class Hero extends Character {
             this.maxHp = levels[this.level].maxHp;
             this.maxMp = levels[this.level].maxMp;
 
-            //this.task = new Task(options[0].task.name, options[0].task.desk, options[0].task.check);
             this.task = options[0].task;
-            //this.task.check = tasks[options[1]].check;
-            //this.task.toDo = new TaskProgress(options[0].task.complete, options[0].task.enemyName, options[0].task.add, options[0].task.completed, options[0].task.xp, options[0].task.money);
 
             this.task.check = null;
             this.task.add = null;
