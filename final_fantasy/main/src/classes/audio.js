@@ -3,6 +3,10 @@ class GameAudio {
         this.isMuted = false;
         this.music = new Audio();
         this.music.autoplay = false;
+        this.music.onended = () => {
+            this.music.play();
+        }
+
         this.sounds = new Audio();
         this.sounds.autoplay = true;
 
@@ -61,6 +65,7 @@ class GameAudio {
 
         this.Walk = function () {
             if (this.isMuted) {
+                this.music.pause();
                 return;
             }
 
@@ -70,15 +75,17 @@ class GameAudio {
 
         this.Menu = function () {
             if (this.isMuted) {
+                this.music.pause();
                 return;
             }
 
-            this.music.src = `${this.mainMenu}${Math.floor(Math.random() * (this.mainMenuCount - 1)) + 1}.mp3`;
+            this.music.src = `${this.mainMenu}${Math.floor(Math.random() * (this.mainMenuCount)) + 1}.mp3`;
             this.music.play();
         }
 
         this.Fight = function () {
             if (this.isMuted) {
+                this.music.pause();
                 return;
             }
 
@@ -88,6 +95,7 @@ class GameAudio {
 
         this.Village = function () {
             if (this.isMuted) {
+                this.music.pause();
                 return;
             }
 
@@ -97,6 +105,7 @@ class GameAudio {
 
         this.City = function () {
             if (this.isMuted) {
+                this.music.pause();
                 return;
             }
 

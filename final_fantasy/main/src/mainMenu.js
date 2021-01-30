@@ -2,13 +2,16 @@ import { audio } from "./classes/audio";
 import { createHero } from "./createHero";
 import { loadGame } from "./load";
 import { saveGame } from "./save";
+import { settings } from "./settings";
 
 /*document.addEventListener('DOMContentLoaded', () => {
     mainMenu();
 });*/
 
 export function mainMenu() {
-    createMenu();
+    if (document.getElementById('mainMenu') === null) {
+        createMenu();
+    }
     document.onkeydown = click;
     audio.Menu();
 }
@@ -104,7 +107,7 @@ function Enter(option) {
             newGame();
             break;
         case 'Settings':
-            settings();
+            Settings();
             break;
         case 'About':
             about();
@@ -122,8 +125,8 @@ function newGame() {
     createHero();
 }
 
-function settings() {
-
+function Settings() {
+    settings();
 }
 
 function about() {
