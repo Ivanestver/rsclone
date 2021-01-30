@@ -1,4 +1,7 @@
+import { audio } from "./classes/audio";
 import { createHero } from "./createHero";
+import { loadGame } from "./load";
+import { saveGame } from "./save";
 
 /*document.addEventListener('DOMContentLoaded', () => {
     mainMenu();
@@ -7,6 +10,7 @@ import { createHero } from "./createHero";
 export function mainMenu() {
     createMenu();
     document.onkeydown = click;
+    audio.Menu();
 }
 
 function createMenu() {
@@ -27,7 +31,7 @@ function createMenu() {
     menuBlock.classList.add('menuBlock', 'appearance');
 
     let continueGame = document.createElement('span');
-    continueGame.textContent = 'Contunue Game';
+    continueGame.textContent = 'Continue Game';
     continueGame.classList.add('menu-item', 'select');
     let newGame = document.createElement('span');
     newGame.textContent = 'New Game';
@@ -109,7 +113,8 @@ function Enter(option) {
 }
 
 function continueGame() {
-
+    document.getElementById('mainMenu').remove();
+    loadGame();
 }
 
 function newGame() {

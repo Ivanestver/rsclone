@@ -5,6 +5,7 @@ import { pauseMenu } from "./PauseMenu";
 import { Hero } from "./classes/characters";
 import { trading } from "./trading";
 import { river, bigLake, forrest, field, town, littleLake, city } from "./classes/maps";
+import { audio } from "./classes/audio";
 
 const { Mountain, Grass } = require("./classes/nature");
 var main = document.getElementsByClassName('main')[0];
@@ -19,6 +20,7 @@ export function initMap() {
 
     document.onkeydown = input;
     paintMap(town);
+    audio.Walk();
 }
 
 export function paintMap(Map = variables.Map) {

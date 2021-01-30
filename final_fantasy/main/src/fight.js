@@ -3,6 +3,7 @@ import { variables } from "./variables";
 import { foods, drinks } from "./classes/supplies";
 import { checkLevel } from "./classes/level";
 import { ids, tasks } from "./classes/task";
+import { audio } from "./classes/audio";
 
 var main = document.getElementsByClassName('main')[0];
 var heroHealth;
@@ -17,6 +18,7 @@ export function createFight() {
     paintMap(variables.Arena);
     createHUD();
     document.onkeydown = keyPressHandler;
+    audio.Fight();
 }
 
 function createHUD() {
@@ -261,6 +263,7 @@ function Attack(power) {
     }
     textTurn.textContent = "Enemy's turn!";
     canBeContinued = false;
+    audio.Shot();
     setTimeout(() => {
         canBeContinued = true;
         EnemyAttack();
@@ -269,6 +272,7 @@ function Attack(power) {
 
 function EnemyAttack() {
     variables.Hero.Hp = variables.Hero.Hp - variables.Arena.map[variables.enemyCoordinates.x][variables.enemyCoordinates.y].Power;
+    audio.Monster();
     if (variables.Hero.Hp <= 0) {
         heroHealth.textContent = 'Your HP: 0';
         lose();

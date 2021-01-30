@@ -7,6 +7,7 @@ import { House } from './classes/nature'
 import { Character } from "./classes/characters";
 import { dialog } from "./dialog";
 import { ids } from "./classes/task";
+import { audio } from "./classes/audio";
 
 export function move(event) {
     switch (event.key) {
@@ -43,6 +44,7 @@ function replace(row, column) {
             variables.Map.map[variables.X][variables.Y] = helpCell;
             variables.X = row;
             variables.Y = column;
+            audio.Step();
             paintMap();
             if (variables.Hero.task !== null && typeof variables.Hero.task.check === 'function') {
                 variables.Hero.task.check(ids['carry']);
@@ -72,6 +74,7 @@ function replace(row, column) {
             document.body.appendChild(fightWrap);
 
             document.onkeydown = null;
+            audio.StartFight();
 
             setTimeout(() => {
                 document.getElementById('fightName').remove();
