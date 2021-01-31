@@ -251,6 +251,7 @@ function EnterChoose(name) {
     }
 
     place.splice(itemIndex, 1);
+
     if (item.src.split('/')[item.src.split('/').length - 2] === 'Weapons') {
         place.push(variables.Hero.inventory.weapon)
         variables.Hero.inventory.weapon = item;

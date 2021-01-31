@@ -244,6 +244,8 @@ export function moveToAnotherLocation(row, column) {
             }
 
             variables.Map = location;
+
+            audio.Walk();
         }
         else {
             variables.Map.map[variables.X][variables.Y] = variables.currentPlace;
@@ -327,14 +329,14 @@ export function isCity(x, y) {
 
         variables.currentPlace = location.map[variables.X][variables.Y];
 
-        paintMap(variables.Map.map[x][y] instanceof Town ? city : village);
-
         if (variables.Map.map[x][y] instanceof Town) {
             audio.City();
         }
         else {
             audio.Village();
         }
+
+        paintMap(variables.Map.map[x][y] instanceof Town ? city : village);
 
         return true;
     }

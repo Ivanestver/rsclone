@@ -2,7 +2,7 @@
   "name": "final_fantasy",
   "version": "1.0.0",
   "description": "",
-  "main": "./main/src/mainMenu.js",
+  "main": "./main/src/startGame.js",
   "dependencies": {
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.1"

@@ -7,6 +7,7 @@ import { saveGame } from "./save";
 import { loadGame } from "./load";
 import { equipment } from "./equipment";
 import { audio } from "./classes/audio";
+import { mission } from "./mission";
 
 export function pauseMenu() {
     if (document.getElementById('pause') === null) {
@@ -58,6 +59,11 @@ function createMenu() {
     equipment.textContent = 'Equipment';
     equipment.classList.add('menu-item');
     equipment.style.fontSize = '3rem';
+
+    let mission = document.createElement('span');
+    mission.textContent = 'Mission';
+    mission.classList.add('menu-item');
+    mission.style.fontSize = '3rem';
 
     let save = document.createElement('span');
     save.textContent = 'Save game';
@@ -161,6 +167,9 @@ function Enter(option) {
             break;
         case 'Equipment':
             equipment();
+            break;
+        case 'Mission':
+            mission();
             break;
         case 'Save game':
             save();
