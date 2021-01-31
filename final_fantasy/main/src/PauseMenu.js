@@ -84,6 +84,7 @@ function createMenu() {
     pause.appendChild(character);
     pause.appendChild(inventory);
     pause.appendChild(equipment);
+    pause.appendChild(mission);
     pause.appendChild(save);
     pause.appendChild(load);
     pause.appendChild(exit);
