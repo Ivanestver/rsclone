@@ -1,10 +1,12 @@
+import { audio } from "./classes/audio";
+import { createHero } from "./createHero";
 import { initMap } from "./main";
 import { variables } from "./variables";
 
 export function WriteName() {
     let nameWrapper = document.createElement('div');
     nameWrapper.classList.add('menuWrapper');
-    nameWrapper.id = 'menuWrapper';
+    nameWrapper.id = 'writeName';
 
     let name = document.createElement('div');
     name.classList.add('write-name', 'appearance');
@@ -24,6 +26,7 @@ export function WriteName() {
     let back = document.createElement('button');
     back.textContent = 'Back';
     back.classList.add('name-button');
+    back.onclick = Escape;
 
     buttons.appendChild(enter);
     buttons.appendChild(back);
@@ -42,12 +45,19 @@ export function WriteName() {
 function Input(event) {
 
     if (event.key === 'Backspace') {
+        audio.BackSpace();
         document.getElementById('input').value = document.getElementById('input').value.slice(0, document.getElementById('input').value.length - 1);
         return;
     }
 
     if (event.key === 'Enter') {
+        audio.Choose();
         Enter(document.getElementById('input').value);
+        return;
+    }
+
+    if (event.key === 'Escape') {
+        Escape();
         return;
     }
 
@@ -56,6 +66,14 @@ function Input(event) {
     }
 
     document.getElementById('input').value += event.key;
+    audio.Button();
+}
+
+function Escape() {
+    document.getElementById('writeName').remove();
+    audio.Cancel();
+
+    createHero();
 }
 
 function Enter(name) {
@@ -65,5 +83,5 @@ function Enter(name) {
     variables.Hero.Name = name;
     document.onkeyup = null;
     initMap();
-    document.getElementById('menuWrapper').remove();
+    document.getElementById('writeName').remove();
 }

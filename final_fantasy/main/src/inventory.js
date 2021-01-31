@@ -1,3 +1,4 @@
+import { audio } from "./classes/audio";
 import { drinks, foods } from "./classes/supplies";
 import { pauseMenu } from "./PauseMenu";
 import { variables } from "./variables";
@@ -91,25 +92,21 @@ function input(event) {
         case 'w':
         case 'W':
         case 'ArrowUp':
+            audio.MenuMove();
             chooseItem(1);
-            break;
-        case 'a':
-        case 'A':
-        case 'LeftArrow':
             break;
         case 's':
         case 'S':
         case 'ArrowDown':
+            audio.MenuMove();
             chooseItem();
             break;
-        case 'd':
-        case 'D':
-        case 'RightArrow':
-            break;
         case 'Enter':
+            audio.Choose();
             Enter(document.getElementsByClassName('select')[1].children[0].textContent);
             break;
         case 'Escape':
+            audio.Cancel();
             document.getElementById('inventory').remove();
             pauseMenu();
             break;
@@ -139,6 +136,7 @@ export function chooseItem(up = 0) {
 }
 
 function Enter(option) {
+
     let keys = Object.keys(variables.Hero.inventory.food);
 
     for (let i = 0; i < keys.length; i++) {

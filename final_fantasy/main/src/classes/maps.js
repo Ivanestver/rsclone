@@ -1,6 +1,7 @@
  import { input, paintMap } from "../main";
 import { variables } from "../variables";
 import { armories, Clothes, LeatherArmory } from "./armories";
+import { audio } from "./audio";
 import { Character, DarkKnight, Enemy, Hero } from "./characters";
 import { Bridge, Grass, Mountain, Town, Tree, Water, Wall, Village, Road, House } from "./nature";
 import { foods } from "./supplies";
@@ -327,6 +328,13 @@ export function isCity(x, y) {
         variables.currentPlace = location.map[variables.X][variables.Y];
 
         paintMap(variables.Map.map[x][y] instanceof Town ? city : village);
+
+        if (variables.Map.map[x][y] instanceof Town) {
+            audio.City();
+        }
+        else {
+            audio.Village();
+        }
 
         return true;
     }

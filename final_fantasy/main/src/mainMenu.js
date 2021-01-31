@@ -1,7 +1,6 @@
 import { audio } from "./classes/audio";
 import { createHero } from "./createHero";
 import { loadGame } from "./load";
-import { saveGame } from "./save";
 import { settings } from "./settings";
 
 /*document.addEventListener('DOMContentLoaded', () => {
@@ -62,6 +61,7 @@ function click(event) {
     let current = document.getElementsByClassName('select')[0];
 
     if (event.key === 'Enter') {
+        audio.Choose();
         Enter(current.textContent);
         return;
     }
@@ -91,6 +91,7 @@ function click(event) {
                     }
                     break;
             }
+            audio.MenuMove();
             break;
         }
     }
@@ -117,7 +118,7 @@ function Enter(option) {
 
 function continueGame() {
     document.getElementById('mainMenu').remove();
-    loadGame();
+    loadGame(false);
 }
 
 function newGame() {

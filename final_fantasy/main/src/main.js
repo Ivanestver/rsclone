@@ -1,17 +1,11 @@
-import { createFight } from "./fight";
 import { move } from "./move";
 import { variables } from "./variables";
 import { pauseMenu } from "./PauseMenu";
 import { Hero } from "./classes/characters";
-import { trading } from "./trading";
-import { river, bigLake, forrest, field, town, littleLake, city } from "./classes/maps";
+import { town } from "./classes/maps";
 import { audio } from "./classes/audio";
 
-const { Mountain, Grass } = require("./classes/nature");
 var main = document.getElementsByClassName('main')[0];
-
-
-document.addEventListener('DOMContentLoaded', initMap);
 
 export function initMap() {
     if (variables.Hero === null) {
@@ -51,13 +45,10 @@ export function paintMap(Map = variables.Map) {
 }
 
 export function input(event) {
-    if (event.key === 'c') {
-        createFight(event);
-    }
-    else if (event.key === 't') {
-        trading();
-    }
-    else if (event.key === 'Escape') {
+
+    if (event.key === 'Escape') {
+        audio.KeyBoard();
+        audio.Stop();
         pauseMenu();
     }
     else {

@@ -47,8 +47,4 @@ class Variables {
     }
 }
 
-export var variables;
-
-document.addEventListener('DOMContentLoaded', () => {
-    variables = new Variables();
-});
+export var variables = new Variables();

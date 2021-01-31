@@ -165,6 +165,8 @@ function keyPressHandler(event, numberElement = 0) {
     }
 
     parent.children[node].classList.add('select');
+
+    audio.MenuMove();
 }
 
 function Enter(option) {

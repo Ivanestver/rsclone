@@ -6,6 +6,7 @@ import { createSpecifications } from "./specifications";
 import { saveGame } from "./save";
 import { loadGame } from "./load";
 import { equipment } from "./equipment";
+import { audio } from "./classes/audio";
 
 export function pauseMenu() {
     if (document.getElementById('pause') === null) {
@@ -90,6 +91,8 @@ function createMenu() {
 function input(event) {
     if (event.key === 'Escape') {
         if (document.getElementById('pause') !== null) {
+            audio.Cancel();
+            audio.Continue();
             document.getElementById('pause').remove();
             document.onkeydown = Input;
             return;
@@ -133,14 +136,19 @@ function input(event) {
     }
 
     parent.children[node].classList.add('select');
+
+    audio.MenuMove();
 }
 
 function Enter(option) {
+    audio.Choose();
+
     switch (option) {
         case 'Continue':
             if (document.getElementById('pause') !== null) {
                 document.getElementById('pause').remove();
                 document.onkeydown = Input;
+                audio.Continue();
                 return;
             }
             break;

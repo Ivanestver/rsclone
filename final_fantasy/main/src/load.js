@@ -2,13 +2,15 @@ import { Hero } from "./classes/characters";
 import { initMap } from "./main";
 import { pauseMenu } from "./PauseMenu";
 import { variables } from "./variables";
-import { tasks } from "./classes/task";
+import { audio } from "./classes/audio";
+import { mainMenu } from "./mainMenu";
 
 var data = null;
+var isPause = true;
 
-export function loadGame() {
+export function loadGame(IsPause = true) {
+    isPause = IsPause;
     data = getData();
-    console.log(data);
     createLoad();
     document.onkeydown = input;
 }
@@ -71,11 +73,15 @@ function getData() {
 
 function input(event) {
     if (event.key === 'Escape') {
-        pauseMenu();
+        audio.Cancel();
+
+        isPause ? pauseMenu() : mainMenu();
+
         document.getElementById('load').remove();
     }
 
     if (event.key === 'Enter') {
+        audio.Choose();
         data.hero.src = data.hero.src.split('/')[4];
         variables.Hero = new Hero(data.hero, data.task);
         initMap();

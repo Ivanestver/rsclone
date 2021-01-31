@@ -1,3 +1,4 @@
+import { audio } from "./classes/audio";
 import { pauseMenu } from "./PauseMenu";
 import { variables } from "./variables";
 
@@ -54,6 +55,7 @@ function input(event) {
         case 'W':
         case 'ArrowUp':
             if (current.textContent === 'No') {
+                audio.MenuMove();
                 current.parentElement.children[1].classList.add('select');
                 current.classList.remove('select');
             }
@@ -62,14 +64,17 @@ function input(event) {
         case 'S':
         case 'ArrowDown':
             if (current.textContent === 'Yes') {
+                audio.MenuMove();
                 current.parentElement.children[2].classList.add('select');
                 current.classList.remove('select');
             }
             break;
         case 'Enter':
+            audio.Choose();
             Enter(current.textContent);
             break;
         case 'Escape':
+            audio.Cancel();
             Enter('No');
             break;
     }

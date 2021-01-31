@@ -1,5 +1,5 @@
+import { audio } from "./classes/audio";
 import { Hero } from "./classes/characters";
-import { initMap } from "./main";
 import { mainMenu } from "./mainMenu";
 import { variables } from "./variables";
 import { WriteName } from "./writeName";
@@ -76,28 +76,32 @@ function createMenu() {
 
 function click(event) {
     switch (event.key) {
-        case 'w':
-        case 'W':
-        case 'ArrowUp':
-            changeButton();
-            break;
         case 'a':
         case 'A':
         case 'LeftArrow':
+            audio.MenuMove();
             changeHero(1);
             break;
+        case 'w':
+        case 'W':
+        case 'ArrowUp':
         case 's':
         case 'S':
         case 'ArrowDown':
+            audio.MenuMove();
             changeButton();
             break;
         case 'd':
         case 'D':
         case 'RightArrow':
+            audio.MenuMove();
             changeHero();
             break;
         case 'Enter':
             Enter(document.getElementsByClassName('select')[0].textContent);
+            break;
+        case 'Escape':
+            Enter('NO');
             break;
     }
 }
@@ -121,12 +125,14 @@ function changeButton() {
 
 function Enter(option) {
     if (option === 'OK') {
+        audio.Choose();
         variables.Hero = new Hero('', 100, 10, 100, `${document.getElementById('desc').textContent}.png`);
         WriteName();
-        document.getElementById('create').remove();
     }
     else {
-        document.getElementById('create').remove();
+        audio.Cancel();
         mainMenu();
     }
+
+    document.getElementById('create').remove();
 }

@@ -1,3 +1,4 @@
+import { audio } from "./classes/audio";
 import { pauseMenu } from "./PauseMenu";
 import { variables } from "./variables";
 
@@ -5,6 +6,7 @@ export function createSpecifications() {
     createWindow();
     document.onkeydown = function (event) {
         if (event.key === 'Escape') {
+            audio.Cancel();
             pauseMenu();
             document.getElementById('spec').remove();
         }

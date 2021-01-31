@@ -2,6 +2,7 @@ import { pauseMenu } from "./PauseMenu";
 import { variables } from "./variables";
 import { Weapon } from "./classes/weapons";
 import { Armory } from "./classes/armories";
+import { audio } from "./classes/audio";
 
 var place = null;
 
@@ -132,20 +133,24 @@ function input(event) {
     };
     switch (event.key) {
         case 'Escape':
+            audio.Cancel();
             document.getElementById('equipment').remove();
             pauseMenu();
             break;
         case 'Enter':
+            audio.Choose();
             Enter(current.parentNode.children[0] == current);
             break;
         case 'w':
         case 'W':
         case 'ArrowUp':
+            audio.MenuMove();
             move(0);
             break;
         case 's':
         case 'S':
         case 'ArrowDown':
+            audio.MenuMove();
             move(1);
             break;
     }
@@ -210,20 +215,24 @@ function chooseAnItem(event) {
 
     switch (event.key) {
         case 'Escape':
+            audio.Cancel();
             document.getElementById('items').remove();
             document.onkeydown = input;
             break;
         case 'Enter':
+            audio.Choose();
             EnterChoose(current.children[0].textContent);
             break;
         case 'w':
         case 'W':
         case 'ArrowUp':
+            audio.MenuMove();
             move(1);
             break;
         case 's':
         case 'S':
         case 'ArrowDown':
+            audio.MenuMove();
             move(0);
             break;
     }
@@ -242,7 +251,7 @@ function EnterChoose(name) {
     }
 
     place.splice(itemIndex, 1);
-    if (item instanceof Weapon) {
+    if (item.src.split('/')[item.src.split('/').length - 2] === 'Weapons') {
         place.push(variables.Hero.inventory.weapon)
         variables.Hero.inventory.weapon = item;
     }

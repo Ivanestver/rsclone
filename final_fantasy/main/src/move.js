@@ -44,7 +44,6 @@ function replace(row, column) {
             variables.Map.map[variables.X][variables.Y] = helpCell;
             variables.X = row;
             variables.Y = column;
-            audio.Step();
             paintMap();
             if (variables.Hero.task !== null && typeof variables.Hero.task.check === 'function') {
                 variables.Hero.task.check(ids['carry']);
@@ -52,6 +51,7 @@ function replace(row, column) {
         }
         else {
             if (variables.Map.map[row][column] instanceof House) {
+                audio.Door();
                 trading(variables.Map.map[row][column].trader);
             }
 
@@ -60,7 +60,7 @@ function replace(row, column) {
             }
         }
 
-        if (isFight()) {
+        /*if (isFight()) {
             let fightWrap = document.createElement('div');
             fightWrap.classList.add('fight-text-wrap', 'appearance');
             fightWrap.id = 'fightName';
@@ -80,7 +80,9 @@ function replace(row, column) {
                 document.getElementById('fightName').remove();
                 createFight();
             }, 3000);
-        }
+        }*/
+
+        audio.Step();
     }
     else {
         paintMap();

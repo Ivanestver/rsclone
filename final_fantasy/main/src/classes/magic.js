@@ -21,7 +21,7 @@ export class SkillMagic extends Magic {
 }
 
 export var cure = new SkillMagic('Medics may cry', 33, 5, function(hero) {
-    hero.Hp += this.power;
+    hero.hp += this.power;
     hero.mana -= this.mana;
 }, 150); // restores 33 HP to a hero
 export var lightning = new Magic('God of lightning', 20, 5, 200); // attack with a lightning

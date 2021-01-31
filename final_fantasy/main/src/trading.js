@@ -4,6 +4,7 @@ import { variables } from "./variables";
 import { Food, Drink, foods, drinks } from './classes/supplies'
 import { Weapon, weapons } from "./classes/weapons";
 import { armories, Armory } from "./classes/armories";
+import { audio } from "./classes/audio";
 
 var trader = null;
 
@@ -13,20 +14,6 @@ export function trading(_trader) {
     document.onkeydown = defineCategory;
 }
 
-/*function defineATrader() {
-    if (variables.Map[variables.X][variables.Y - 1] instanceof Trader) { // from the left side
-        trader = variables.Map[variables.X][variables.Y - 1];
-    }
-    else if (variables.Map[variables.X - 1][variables.Y] instanceof Trader) { // from above
-        trader = variables.Map[variables.X - 1][variables.Y];
-    }
-    else if (variables.Map[variables.X][variables.Y + 1] instanceof Trader) { // from the right side
-        trader = variables.Map[variables.X][variables.Y + 1];
-    }
-    else if (variables.Map[variables.X + 1][variables.Y] instanceof Trader) { // from below
-        trader = variables.Map[variables.X + 1][variables.Y];
-    }
-}*/
 function createTrading() {
     let wrap = document.createElement('div');
     wrap.id = 'trade';
@@ -88,10 +75,12 @@ function defineCategory(event) {
     let current = document.getElementsByClassName('select')[0];
     switch (event.key) {
         case 'Escape':
+            audio.Cancel();
             document.getElementById('trade').remove();
             document.onkeydown = input;
             break;
         case 'Enter':
+            audio.Choose();
             current.textContent === 'Buy' ? buy() : sell();
             document.onkeydown = moving;
             break;
@@ -99,6 +88,7 @@ function defineCategory(event) {
         case 'A':
         case 'LeftArrow':
             if (current.textContent === 'Sell') {
+                audio.MenuMove();
                 current.parentElement.children[0].classList.add('select');
                 current.classList.remove('select');
             }
@@ -107,6 +97,7 @@ function defineCategory(event) {
         case 'D':
         case 'RightArrow':
             if (current.textContent === 'Buy') {
+                audio.MenuMove();
                 current.parentElement.children[1].classList.add('select');
                 current.classList.remove('select');
             }
@@ -146,6 +137,7 @@ function buy() {
 function moving(event) {
     switch (event.key) {
         case 'Escape':
+            audio.Cancel();
             document.getElementById('items').innerHTML = 0;
             document.onkeydown = defineCategory;
             break;
@@ -165,6 +157,8 @@ function moving(event) {
             else {
                 sellItem(document.getElementsByClassName('select')[1]);
             }
+
+            audio.Money();
             break;
         case 'w':
         case 'W':
@@ -180,6 +174,7 @@ function moving(event) {
 }
 
 function chooseItem(up = 1) {
+    audio.MenuMove();
     let current = document.getElementsByClassName('select')[1];
 
     for (let i = 0; i < current.parentElement.children.length; i++) {
@@ -363,4 +358,6 @@ function sellItem(item) {
     document.getElementById('items').innerHTML = '';
 
     sell();
+
+    audio.Money();
 }
