@@ -60,7 +60,7 @@ function replace(row, column) {
             }
         }
 
-        /*if (isFight()) {
+        if (isFight()) {
             let fightWrap = document.createElement('div');
             fightWrap.classList.add('fight-text-wrap', 'appearance');
             fightWrap.id = 'fightName';
@@ -80,7 +80,7 @@ function replace(row, column) {
                 document.getElementById('fightName').remove();
                 createFight();
             }, 3000);
-        }*/
+        }
 
         audio.Step();
     }

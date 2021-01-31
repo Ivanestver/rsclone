@@ -53,10 +53,10 @@ export class TaskProgress {
 export var killSomeone = new Task('kill', function (Yes, No, xp, money) {
     let task = killSomeone;
     return function (who, player) {
-        //let count = Math.floor(Math.random() * 5) + 1;
-        let count = 1;
-        let enemy = 1;
-        //let enemy = Math.floor(Math.random() * (Object.keys(enemies).length - 1));
+        let count = Math.floor(Math.random() * 5) + 1;
+        //let count = 1;
+        //let enemy = 1;
+        let enemy = Math.floor(Math.random() * (Object.keys(enemies).length - 1));
 
         task.toDo = new TaskProgress(count, enemies[Object.keys(enemies)[enemy]].Name, xp, money);
         
