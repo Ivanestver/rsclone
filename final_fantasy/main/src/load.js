@@ -10,6 +10,22 @@ var isPause = true;
 
 export function loadGame(IsPause = true) {
     isPause = IsPause;
+    if (!localStorage.getItem('ff')) {
+        createNoLoad();
+
+        document.onkeydown = function (event) {
+            if (event.key === 'Escape') {
+                audio.Cancel();
+
+                isPause ? pauseMenu() : mainMenu();
+
+                document.getElementById('noLoad').remove();
+            }
+        };
+
+        return;
+    }
+
     data = getData();
     createLoad();
     document.onkeydown = input;
@@ -64,6 +80,20 @@ function createLoad() {
     wrap.appendChild(wrapper);
 
     document.body.appendChild(wrap)
+}
+
+function createNoLoad() {
+    let wrap = document.createElement('div');
+    wrap.classList.add('menuWrapper');
+    wrap.id = 'noLoad';
+
+    let message = document.createElement('span');
+    message.textContent = 'There is no saved game. Press Escape to get back';
+    message.classList.add('menu-item');
+
+    wrap.appendChild(message);
+
+    document.body.appendChild(wrap);
 }
 
 function getData() {

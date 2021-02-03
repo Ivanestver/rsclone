@@ -3,7 +3,7 @@ import { mainMenu } from "./mainMenu";
 const delay = 10000;
 
 document.addEventListener('DOMContentLoaded', () => {
-    mainMenu();
+    StartVideo();
 });
 
 export function StartVideo() {
