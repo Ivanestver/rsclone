@@ -38,24 +38,24 @@ export var enemies = {
     'Scorpion': new Enemy('Scorpion', 'Scorpion.png', 220, 52, 60, 60),
     // forest
     'Terrible Wolf': new Enemy('Terrible Wolf', 'Wolf.png', 120, 20, 25, 25),
-    'Troll': new Enemy('Troll', 'Troll.png', 120, 20, 25, 25),
-    'Living Tree': new Enemy('Living Tree', 'LivingTree.png', 120, 20, 25, 25),
+    'Troll': new Enemy('Troll', 'Troll.png', 110, 23, 22, 21),
+    'Living Tree': new Enemy('Living Tree', 'LivingTree.png', 160, 22, 26, 27),
     // field
-    'Crazy Villager': new Enemy('Crazy Villager', 'Villager.png', 170, 30, 40, 25),
-    'Hell Cow': new Enemy('Hell Cow', 'HellCow.png', 170, 30, 40, 25),
-    'Wasp': new Enemy('Wasp', 'Wasp.png', 170, 30, 40, 25),
+    'Crazy Villager': new Enemy('Crazy Villager', 'Villager.png', 170, 40, 50, 56),
+    'Hell Cow': new Enemy('Hell Cow', 'HellCow.png', 200, 42, 53, 59),
+    'Wasp': new Enemy('Wasp', 'Wasp.png', 180, 42, 51, 57),
     // big lake
-    'Horrible Crab': new Enemy('Horrible Crab', 'Crab.png', 100, 15, 15, 15),
-    'FishMan': new Enemy('FishMan', 'FishMan.png', 100, 15, 15, 15),
-    'Big Lake Monster': new Enemy('Big Lake Monster', 'LochNess.png', 100, 15, 15, 15),
+    'Horrible Crab': new Enemy('Horrible Crab', 'Crab.png', 220, 55, 60, 63),
+    'FishMan': new Enemy('FishMan', 'FishMan.png', 210, 51, 57, 60),
+    'Big Lake Monster': new Enemy('Big Lake Monster', 'LochNess.png', 300, 100, 100, 100),
     // town
-    'Dark Knight': new Enemy('Dark Knight', 'DarkKnight.png', 100, 10, 10, 10),
-    'Robber': new Enemy('Robber', 'Robber.png', 100, 10, 10, 10),
-    'Goblin': new Enemy('Goblin', 'Goblin.png', 100, 10, 10, 10),
+    'Dark Knight': new Enemy('Dark Knight', 'DarkKnight.png', 100, 18, 10, 15),
+    'Robber': new Enemy('Robber', 'Robber.png', 110, 19, 12, 17),
+    'Goblin': new Enemy('Goblin', 'Goblin.png', 115, 2, 13, 18),
     // small lake
-    'Drowned': new Enemy('Drowned', 'Drowned.png', 150, 45, 50, 30),
-    'Snake': new Enemy('Snake', 'Snake.png', 150, 45, 50, 30),
-    'Mermaid': new Enemy('Mermaid', 'Mermaid.png', 150, 45, 50, 30),
+    'Drowned': new Enemy('Drowned', 'Drowned.png', 150, 30, 27, 27),
+    'Snake': new Enemy('Snake', 'Snake.png', 170, 32, 29, 28),
+    'Mermaid': new Enemy('Mermaid', 'Mermaid.png', 160, 31, 27, 28),
 };
 
 export var npc = {
