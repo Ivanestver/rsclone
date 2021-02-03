@@ -519,3 +519,13 @@ table tr td {
 .footer img {
     height: 100%;
 }
+
+.grid-about {
+    display: grid;
+    width: 75vw;
+    height: 50vh;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(2, 50%);
+    align-items: center;
+    text-align: center;
+}

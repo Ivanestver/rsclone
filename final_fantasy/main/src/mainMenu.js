@@ -1,3 +1,4 @@
+import { about } from "./about";
 import { audio } from "./classes/audio";
 import { createHero } from "./createHero";
 import { loadGame } from "./load";
@@ -128,8 +129,4 @@ function newGame() {
 
 function Settings() {
     settings();
-}
-
-function about() {
-
 }
