@@ -103,8 +103,10 @@ export class Hero extends Character {
 
             this.task = options[0].task;
 
-            this.task.check = null;
-            this.task.add = null;
+            if (this.task !== null) {
+                this.task.check = null;
+                this.task.add = null;
+            }
         }
     }
 

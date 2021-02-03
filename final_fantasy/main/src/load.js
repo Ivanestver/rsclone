@@ -116,6 +116,8 @@ function input(event) {
         variables.Hero = new Hero(data.hero, data.task);
         initMap();
         document.getElementById('load').remove();
-        document.getElementById('pause').remove();
+        if (document.getElementById('pause') !== null) {
+            document.getElementById('pause').remove();
+        }        
     }
 }
