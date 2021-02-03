@@ -1,22 +1,30 @@
  import { input, paintMap } from "../main";
 import { variables } from "../variables";
-import { armories, Clothes, LeatherArmory } from "./armories";
+import { armories, Clothes, LeatherArmory, BoneArmor, Corselet, Cuirass, DarkArmor, ChaosArmor, IronManArmor } from "./armories";
 import { audio } from "./audio";
 import { Character, DarkKnight, Enemy, Hero } from "./characters";
 import { Bridge, Grass, Mountain, Town, Tree, Water, Wall, Village, Road, House } from "./nature";
 import { foods } from "./supplies";
 import { killSomeone } from "./task";
 import { Trader } from "./trader";
-import { IronSword, weapons, WoodenAxe, WoodenSword, IronAxe } from "./weapons";
+import {
+    WoodenSword, IronSword, DiamondSword, TitaniumSword,// Swords
+    WoodenAxe, IronAxe, DiamondAxe, TitaniumAxe, // Axes
+    WoodenHammer, IronHammer, DiamondHammer, TitaniumHammer, // Hammers
+    Stick,
+    Mace } from "./weapons";
 
 var isTown = false;
 
 var armoriesVillageTrader = new Trader('Armories', 0.2, [LeatherArmory]);
-var weaponsVillageTrader = new Trader('Weapons', 0.2, [WoodenSword, WoodenAxe]);
+var weaponsVillageTrader = new Trader('Weapons', 0.2, [WoodenSword, IronSword, WoodenAxe, IronAxe, Stick, WoodenHammer, IronHammer]);
 var suppliesVillageTrader = new Trader('Supplies', 0.2, [foods['apple'], foods['bread'], foods['fish']]);
 
-var armoriesCityTrader = new Trader('Armories', 0.2, [LeatherArmory, Clothes]);
-var weaponsCityTrader = new Trader('Weapons', 0.2, [WoodenSword, WoodenAxe, IronSword, IronAxe]);
+var armoriesCityTrader = new Trader('Armories', 0.2, [Clothes, LeatherArmory, BoneArmor, Corselet, Cuirass, DarkArmor, ChaosArmor, IronManArmor]);
+var weaponsCityTrader = new Trader('Weapons', 0.2, [DiamondSword, TitaniumSword,// Swords
+                                                     DiamondAxe, TitaniumAxe, // Axes
+                                                    DiamondHammer, TitaniumHammer, // Hammers
+                                                    ]);
 var suppliesCityTrader = new Trader('Supplies', 0.2, [foods['apple'], foods['bread'], foods['fish'], foods['meat']]);
 
 class Map {
