@@ -418,7 +418,8 @@ export function isFight() {
     }
 
     let number = Math.floor(Math.random() * 9);
-    if (number === 0) {
+    if (number === 0
+        || number === 3) {
         return true;
     }
 
