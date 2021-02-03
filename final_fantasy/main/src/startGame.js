@@ -35,7 +35,7 @@ function createNames(wrap) {
     wrapper.classList.add('video-wrap');
 
     let devText = document.createElement('span');
-    devText.textContent = 'Developers';
+    devText.textContent = 'Developer';
     devText.classList.add('video-text');
     devText.style.fontSize = '6rem';
 
@@ -46,8 +46,10 @@ function createNames(wrap) {
     myName.textContent = 'Ivan Patrenkov';
     myName.classList.add('video-text', 'video-text-name');
 
-    let myGit = document.createElement('span');
+    let myGit = document.createElement('a');
     myGit.textContent = 'GitHub: Ivanestver';
+    myGit.href = 'https://github.com/Ivanestver';
+    myGit.target = '_blank';
     myGit.classList.add('video-text', 'video-text-name');
 
     nameWrap.appendChild(myName);
