@@ -6,6 +6,11 @@ import { WriteName } from "./writeName";
 
 var heros = ['Warrior', 'Magician'];
 
+var hero = [
+    new Hero('', 110, 10, 70, ''), // the warrior
+    new Hero('', 90, 6, 130, '') // the magician
+]
+
 export function createHero() {
     createMenu();
     document.onkeydown = click;
@@ -107,7 +112,7 @@ function click(event) {
 }
 
 function changeHero(dir = 0) {
-    let who = heros[Math.abs((heros.indexOf(document.getElementById('desc').textContent) + ((-1) ** dir))) % heros.length]
+    let who = heros[Math.abs((heros.indexOf(document.getElementById('desc').textContent) + ((-1) ** dir))) % heros.length];
     document.getElementById('img').src = `./assets/sprites/Characters/${who}.png`;
     document.getElementById('desc').textContent = who;
 }
@@ -126,7 +131,9 @@ function changeButton() {
 function Enter(option) {
     if (option === 'OK') {
         audio.Choose();
-        variables.Hero = new Hero('', 100, 10, 100, `${document.getElementById('desc').textContent}.png`);
+        let who = heros[heros.indexOf(document.getElementById('desc').textContent)];
+        variables.Hero = who === 'Warrior' ? hero[0] : hero[1];
+        variables.Hero.src = `./assets/sprites/Characters/${who === 'Warrior' ? 'Warrior' : 'Magician'}.png`;
         WriteName();
     }
     else {

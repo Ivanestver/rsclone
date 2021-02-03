@@ -40,7 +40,7 @@ export class Character extends Object {
 }
 
 export class Hero extends Character {
-    
+    // name, hp, power, mana, src
     constructor(...options) {
         if (options.length > 2) {
             super(options[0], true, options[4], options[1], options[2], false, 0, 0);
