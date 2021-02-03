@@ -3,7 +3,7 @@ import { pauseMenu } from "./PauseMenu";
 import { variables } from "./variables";
 
 export function mission() {
-    createMission();
+    variables.Hero.task === null ? createNoMission() : createMission();
 
     document.onkeydown = input;
 }
@@ -44,6 +44,20 @@ function createMission() {
     missionWrap.appendChild(killDone);
 
     wrap.appendChild(missionWrap);
+
+    document.body.appendChild(wrap);
+}
+
+function createNoMission() {
+    let wrap = document.createElement('div');
+    wrap.classList.add('menuWrapper');
+    wrap.id = 'mission';
+
+    let message = document.createElement('span');
+    message.textContent = 'You are not completing a mission. Press Escape to get back';
+    message.classList.add('menu-item');
+
+    wrap.appendChild(message);
 
     document.body.appendChild(wrap);
 }

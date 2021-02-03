@@ -15,11 +15,7 @@ export function loadGame(IsPause = true) {
 
         document.onkeydown = function (event) {
             if (event.key === 'Escape') {
-                audio.Cancel();
-
-                isPause ? pauseMenu() : mainMenu();
-
-                document.getElementById('noLoad').remove();
+                input(event);
             }
         };
 
@@ -85,7 +81,7 @@ function createLoad() {
 function createNoLoad() {
     let wrap = document.createElement('div');
     wrap.classList.add('menuWrapper');
-    wrap.id = 'noLoad';
+    wrap.id = 'load';
 
     let message = document.createElement('span');
     message.textContent = 'There is no saved game. Press Escape to get back';
