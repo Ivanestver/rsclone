@@ -34,8 +34,8 @@ class Map {
 export var enemies = {
     // river
     'Scary Fish': new Enemy('Scary Fish', 'Fish.png', 200, 50, 55, 60),
-    'Zombie': new Enemy('Zombie', 'Zombie.png', 200, 50, 55, 60),
-    'Scorpion': new Enemy('Scorpion', 'Scorpion.png', 200, 50, 55, 60),
+    'Zombie': new Enemy('Zombie', 'Zombie.png', 192, 48, 50, 60),
+    'Scorpion': new Enemy('Scorpion', 'Scorpion.png', 220, 52, 60, 60),
     // forest
     'Terrible Wolf': new Enemy('Terrible Wolf', 'Wolf.png', 120, 20, 25, 25),
     'Troll': new Enemy('Troll', 'Troll.png', 120, 20, 25, 25),
