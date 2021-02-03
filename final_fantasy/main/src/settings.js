@@ -124,6 +124,7 @@ function input(event) {
         case 'Escape':
             audio.Cancel();
             document.getElementById('settings').remove();
+            audio.music.src = '';
             mainMenu();
             break;
     }
