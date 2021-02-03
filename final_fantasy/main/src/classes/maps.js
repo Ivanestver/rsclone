@@ -59,7 +59,7 @@ export var enemies = {
 };
 
 export var npc = {
-    'Old Man': new Character('Old man', false, 'Old.png', 10, 10, false, 50, 50, killSomeone.desc('Great! You can find them walking near the big lake',
+    'Old Man': new Character('Old man', false, 'Old.png', 10, 10, false, 50, 50, killSomeone.desc('Great! I am waiting for you killing them',
                                                                                                    'It\'s a pity!', 20, 50)),
 };    
 
